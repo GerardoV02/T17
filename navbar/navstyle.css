@@ -1,0 +1,68 @@
+nav {
+    --colour1: #FFFEFE;
+    --colour2: #D6493B;
+    --colour3: #2E2C3D;
+    --colour4: #888070;
+    color: var(--colour1);
+    font-family: Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    position: fixed;
+    top: 8px;
+    display: flex;
+    justify-content: center;
+    border: 2px var(--colour2);
+    border-radius: 1em;
+    border-style: solid none;
+    width: 90vw;
+    margin: 0px 5vw 1em;
+    background: linear-gradient(90deg, #0000, 1%, var(--colour1), 10%, var(--colour1), 90%, var(--colour1), 99%, #0000);
+    font-size: large;
+}
+
+.HomeIco {
+    padding: 8px;
+    background-color: var(--colour1);
+    -webkit-mask: url(./icons/gg-home.svg) no-repeat center;
+    mask: url(./icons/gg-home.svg) no-repeat center;
+}
+
+.ColorIco {
+    padding: 8px;
+    background-color: var(--colour1);
+    -webkit-mask: url(./icons/gg-add.svg) no-repeat center;
+    mask: url(./icons/gg-add.svg) no-repeat center;
+}
+
+.AboutIco {
+    padding: 8px;
+    background-color: var(--colour1);
+    -webkit-mask: url(./icons/gg-about.svg) no-repeat center;
+    mask: url(./icons/gg-about.svg) no-repeat center;
+}
+
+nav .button {
+    border: none;
+    padding: 2px 4px;
+    text-decoration: none;
+    background: none;
+    color: currentColor;
+}
+
+nav form {
+    border: 2px var(--colour2);
+    border-style: none solid;
+    border-radius: 4px;
+    padding: 2px 4px;
+    margin: -1px auto;
+    text-decoration: none;
+    background: var(--colour3);
+    color: currentColor;
+}
+
+.button:hover {
+    background: var(--colour4);
+}
+
+nav form:hover {
+    background: var(--colour4);
+}
