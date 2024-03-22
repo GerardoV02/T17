@@ -59,10 +59,6 @@ nav form {
     color: currentColor;
 }
 
-.button:hover {
-    background: var(--colour4);
-}
-
 nav form:hover {
     background: var(--colour4);
 }
