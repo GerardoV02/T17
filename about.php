@@ -18,5 +18,4 @@
 <img src = "" alt="Image go here">
 <p>Bio here</p>
 
-
 </html>
