@@ -5,7 +5,7 @@
         <button type="submit" name="page" value="home" class="button"><div class="HomeIco"></div>Home</button>
     </form>
     <form method="POST">
-        <button type="submit" name="page" value="color+gen" class="button"><div class="ColorIco"></div>Color Gen</button>
+        <button type="submit" name="page" value="color generator" class="button"><div class="ColorIco"></div>Color Generator</button>
     </form>
     <form method="POST">
         <button type="submit" name="page" value="about" class="button"><div class="AboutIco"></div>About</button>
