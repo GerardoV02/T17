@@ -7,5 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <html>
-<h1>homepage!</h1>
+
+<!--
+Classes:
+- Title = "PageTitle"
+- Name = "MemberName"
+- Images = "MemberPic"
+- Bio paragraphs = "Bio"
+-->
+
+<h1 class="PageTitle">Homepage</h1>
+
 </html>
