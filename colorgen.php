@@ -1,6 +1,7 @@
 <!--
 Classes:
 - Title="PageTitle"
+- Bottom Table = "BottomTable"
 -->
 <h1 class="PageTitle"><?php echo ucwords($page);?></h1>
 
@@ -42,13 +43,13 @@ Classes:
 ?>
 
 <?php
-
+    //PHP script to generate bottom table
     if(isset($_POST["dimension"])){
         $num = $_POST["dimension"];
 
+
+        //BottomTable class for styling
         echo ('<table class = "BottomTable">');
-
-
         $letterNum = ord('a');
 
         for($i = 0; $i < $num+1; $i++){
