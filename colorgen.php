@@ -61,7 +61,7 @@ Classes:
 
             echo("<td>");
 
-            echo("<output id=\"colour" . $i . "\" class=\"$colours[$i]\">this.className changes when colour selected</output>");
+            echo("<output id=\"colour" . $i . "\" class=\"$colours[$i]\">this.className changes for adding colour through styling when colour selected</output>");
 
             echo("</td>");
     
