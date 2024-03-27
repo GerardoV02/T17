@@ -46,7 +46,7 @@ Classes:
     if(isset($_POST["dimension"])){
         $num = $_POST["dimension"];
 
-        echo ("<table>");
+        echo ('<table class = "BottomTable">');
 
 
         $letterNum = ord('a');
