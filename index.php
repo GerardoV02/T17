@@ -23,7 +23,7 @@
             if ($page == "about")
             require("./about.php");
             if ($page == "color generator")
-            require("./colorgen.php")
+            require("./colorgen.php");
         ?>
     </body>
     <footer></footer>
