@@ -44,7 +44,7 @@ Classes:
         $num = $_POST["num_colors"];
 
         //TopTable
-        echo ('<table class = "BottomTable">');
+        echo ('<table class = "TopTable">');
         for($i = 0; $i < $num; $i++){
             echo("<tr>");
             echo("<td>");
