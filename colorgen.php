@@ -6,56 +6,77 @@ Classes:
 <h1 class="PageTitle"><?php echo ucwords($page);?></h1>
 
 <form method="post">
-    <div>
-        <label for="dimension">Dimension (between 0 and 26):</label>
-        <input type="range" id="dimension" name="dimension" min="0" max="26">
-        <label for="color">Background Color:</label>
-        <select name="color" id="color">
-    </div>
-    <div>
-            <option value="">--- Choose a color ---</option>
-            <option value="red">Red</option>
-            <option value="orange">Orange</option>
-            <option value="yellow">Yellow</option>
-            <option value="green">Green</option>
-            <option value="blue">Blue</option>
-            <option value="purple">Purple</option>
-            <option value="grey">Grey</option>
-            <option value="brown">Brown</option>
-            <option value="black">Black</option>
-            <option value="teal">Teal</option>
-        </select>
-    </div>
-        <input name = "page" value="color generator" type = "hidden">
-    <div>
-        <button type="submit">Select</button>
-    </div>
+    <label for="dimension">Dimension = </label>
+    <output>
+        <?php
+            if(isset($_POST["dimension"])) echo($_POST["dimension"]);
+            else echo("1");
+        ?>
+    </output>
+    <br>
+    <input type="range" id="dimension" name="dimension" min="1" max="26" value="<?php if(isset($_POST["dimension"])) echo($_POST["dimension"]); else echo("1");?>" oninput="this.previousElementSibling.previousElementSibling.value = this.value">
+    <br><br>
+    <label for="num_colors">Number of Colors = </label>
+    <output>
+        <?php
+            if(isset($_POST["num_colors"])) echo($_POST["num_colors"]);
+            else echo("1");
+        ?>
+    </output>
+    <br>
+    <input type="range" id="num_colors" name="num_colors" min="1" max="10" value="<?php if(isset($_POST["num_colors"])) echo($_POST["num_colors"]); else echo("1");?>" oninput="this.previousElementSibling.previousElementSibling.value = this.value">
+    <br><br>
+    <input name="page" value="color generator" type="hidden">
+    <button type="submit">Generate</button>
 </form>
 
 <?php
-    echo($_POST["page"]."<br>");
-    if(isset($_POST["color"])){
-        echo($_POST["color"]."<br>");
-    }
     if(isset($_POST["dimension"])){
-        echo($_POST["dimension"]."<br>");
+        echo("<p>Dimension: " . $_POST["dimension"]."</p>");
     }
-?>
+    if(isset($_POST["num_colors"])){
+        echo("<p>Number of Colors: " . $_POST["num_colors"]."</p>");
+    }
 
-<?php
-    //PHP script to generate bottom table
+    //PHP script to generate tables
     if(isset($_POST["dimension"])){
-        $num = $_POST["dimension"];
+        $dim = $_POST["dimension"];
+        $num = $_POST["num_colors"];
 
+        //TopTable
+        echo ('<table class = "BottomTable">');
+        for($i = 0; $i < $num; $i++){
+            echo("<tr>");
+            echo("<td>");
+            $colours = array("red", "orange", "yellow", "green", "blue", "purple", "grey", "brown", "black", "teal");
 
-        //BottomTable class for styling
+            echo("<select id=\"selector" . $i . "\" onchange=\"document.getElementById('colour" . $i . "').className = this.value\">");
+            for ($k = 0; $k < 10; ++$k) {
+                if ($k == $i) echo("<option value=\"" . $colours[$k] . "\" selected=\"selected\">" . ucwords($colours[$k]) . "</option>");
+                else echo("<option value=\"" . $colours[$k] . "\">" . ucwords($colours[$k]) . "</option>");
+            }
+            echo("</select>");
+
+            echo("</td>");
+
+            echo("<td>");
+
+            echo("<output id=\"colour" . $i . "\" class=\"$colours[$i]\">this.className changes when colour selected</output>");
+
+            echo("</td>");
+    
+            echo("</tr>");
+        }
+        echo("</table>");
+
+        //BottomTable
         echo ('<table class = "BottomTable">');
         $letterNum = ord('a');
 
-        for($i = 0; $i < $num+1; $i++){
+        for($i = 0; $i < $dim+1; $i++){
             echo("<tr>");
     
-            for($j = 0; $j < $num+1;$j++){
+            for($j = 0; $j < $dim+1;$j++){
 
                 //Left uppermost empty
                 if($i == 0 && $j == 0){
