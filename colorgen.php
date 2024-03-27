@@ -1,6 +1,7 @@
 <!--
 Classes:
 - Title="PageTitle"
+- Bottom Table = "BottomTable"
 -->
 <h1 class="PageTitle"><?php echo ucwords($page);?></h1>
 
@@ -33,6 +34,58 @@ Classes:
 
 <?php
     echo($_POST["page"]."<br>");
-    echo($_POST["color"]."<br>");
-    echo($_POST["dimension"]."<br>");
+    if(isset($_POST["color"])){
+        echo($_POST["color"]."<br>");
+    }
+    if(isset($_POST["dimension"])){
+        echo($_POST["dimension"]."<br>");
+    }
+?>
+
+<?php
+    //PHP script to generate bottom table
+    if(isset($_POST["dimension"])){
+        $num = $_POST["dimension"];
+
+
+        //BottomTable class for styling
+        echo ('<table class = "BottomTable">');
+        $letterNum = ord('a');
+
+        for($i = 0; $i < $num+1; $i++){
+            echo("<tr>");
+    
+            for($j = 0; $j < $num+1;$j++){
+
+                //Left uppermost empty
+                if($i == 0 && $j == 0){
+                    echo("<td></td>");
+                    continue;
+                }
+
+                //Echos out letter for top rows
+                if($i == 0){
+                    $letter = chr($letterNum);
+                    echo("<td>$letter</td>");
+                    $letterNum++;
+                    continue;
+                }
+
+                if($j == 0){
+                    echo("<td>$i</td>");
+                    continue;
+                }
+
+                echo("<td>");
+
+                //content here
+                echo("[    ]");
+    
+                echo("</td>");
+    
+            }
+            echo("</tr>");
+        }
+        echo("</table>");
+    }
 ?>
