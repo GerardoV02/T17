@@ -1,0 +1,22 @@
+
+
+
+.BottomTable{
+    --colour1: #FFFEFE;
+    --colour2: #D6493B;
+    --colour3: #2E2C3D;
+    --colour4: #888070;
+    background-color: var(--colour1);
+    border: 5px;
+    border-color: black;
+    border-style: solid;
+}
+
+.Cell{
+    font-family: 'Trebuchet MS',sans-serif;
+    width: 20px;
+    height: 20px;
+    border-width: 1px;
+    border-style: outset;
+    border-color: #2E2C3D;
+}
