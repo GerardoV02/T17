@@ -6,4 +6,30 @@ body {
     font-family: Calibri, 'Trebuchet MS', sans-serif;
     color: var(--colour1);
     background-color: var(--colour3);
+    display: flex;
+}
+
+#Container {
+    width: 96vw;
+    min-height: calc(93vh - 3em);
+    margin: auto;
+    margin-top: 3.2em;
+    padding: 1em;
+    border: 2px var(--colour2);
+    border-style: none solid;
+    border-radius: 1em;
+    background-color: #0004;
+}
+
+.TeamLogo {
+    height: 125px;
+    width: 400px;
+    object-fit: cover;
+    margin-top: -1em;
+    margin-bottom: 0em;
+    margin-left: -3.75em;
+}
+
+.PageTitle {
+    font-size: 4em;
 }

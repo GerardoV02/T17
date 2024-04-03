@@ -7,9 +7,7 @@ Classes:
 - Description="description"
 - Paragraph="description of colorgenerator"
 -->
-<h1 class="PageTitle"><?php echo ucwords($page);?></h1>
-
-<img class="TeamLogo" src="Images/logo.jpeg" width="400px" height="400px">
+<img class="TeamLogo" src="Images/logo_transparent.png">
 
 <h3 class="Mission Statement">Our Mission Statement</h3>
 <p class="statement">To embower those through our web design, while also creating a meaningful website for those to interact with. We are building a unique way for those to generate colors that has rarely been seen before. Welcome to Chroma 17, we are glad to have you!</p>
