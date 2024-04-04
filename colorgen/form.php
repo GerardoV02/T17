@@ -49,14 +49,21 @@ Classes:
     <?php
     for ($i = 0; $i <$_POST["num_colors"]; $i++)
     {
+        $thiscolor= "";
+        $selectedColor = "---choosecolor---";
         if (isset($_POST["color$i"]))
+        {
             $thiscolor = $_POST["color$i"];
-        else 
-            $thiscolor= "";
+        }
+        if ($thiscolor!="")
+        {
+            $selectedColor = strtoupper($thiscolor);
+        }
+        
     echo "
         <label for=\"color$i\">Color$i</label>
         <select name=\"color$i\" id=\"color\"> 
-            <option value=\"\">---choosecolor---</option>
+            <option value=\"$thiscolor\">$selectedColor</option>
             <option value=\"red\">RED</option>
             <option value=\"orange\">ORANGE</option>
             <option value=\"yellow\">YELLOW</option>
@@ -68,9 +75,9 @@ Classes:
             <option value=\"black\">BLACK</option>
             <option value=\"teal\">TEAL</option>
         </select>
-        $thiscolor 
     <br> ";
     }
+
         $valid = true;
         for ($i = 0; $i <$_POST["num_colors"]; $i++)
         {
@@ -79,20 +86,27 @@ Classes:
                 if (isset($_POST["color$i"])&&isset($_POST["color$j"]))
                 {
                      if ($j!=$i&$_POST["color$i"]==$_POST["color$j"])
+                     {
                         $valid = false;
+                        $errorMessage = "please make sure all color feilds do not equal eachother";
+                     }
                     if ($_POST["color$j"]=="")
+                    {
                         $valid = false;
+                        $errorMessage = "please make sure all color feilds have been inputted";
+                    }
                 }
                 else 
                     $valid = false;
             }
         }
+        echo ("<br>");
         if ($valid)
             echo("valid");
         else   
-            echo("color input is not valid, please double check that there are no repeats and all colors have been set");
+            echo($errorMessage);
     ?>
-
  </div>
+    <br>
     <button type="submit">Generate</button>
 </form>
