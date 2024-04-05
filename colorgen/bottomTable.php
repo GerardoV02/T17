@@ -22,13 +22,13 @@ for($i = 0; $i < $dim+1; $i++){
         //Echos out letter for top rows
         if($i == 0){
             $letter = chr($letterNum);
-            $table.="<td class = 'Cell'>$letter</td>";
+            $table.='<td class = "Cell">'.$letter.'</td>';
             $letterNum++;
             continue;
         }
 
         if($j == 0){
-            $table.="<td class = 'Cell'>$i</td>";
+            $table.='<td class = "Cell">'.$i.'</td>';
             continue;
         }
 
@@ -36,13 +36,26 @@ for($i = 0; $i < $dim+1; $i++){
 
         //content here
 
-        $table.="</td>";
+        $table.='</td>';
 
     }
-    $table.="</tr>";
+    $table.='</tr>';
 }
-echo("</table>");
 }
+echo('</table>');
+
+$name = 'Hello World';
 
 echo($table);
+
+$formatted_table = addslashes($table);
+echo("<button id = 'print' onclick = 'myFunction(\"$formatted_table\")'>Print</button>");
 ?>
+
+
+
+<script>
+    function myFunction(contents){
+        document.getElementById('Container').innerHTML = contents;
+    }
+</script>

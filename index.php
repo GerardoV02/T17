@@ -15,16 +15,21 @@
         <link href="./style.css" rel="stylesheet">
     </head>
     <body>
+
+        <?php 
+            require("./navbar/navbar.php");
+            echo("<br><br>");
+        ?>
         <div id="Container">
             <?php
-                require("./navbar/navbar.php");
-                echo("<br><br>");
                 if ($page == "home")
                 require("./home.php");
                 if ($page == "about")
                 require("./about.php");
                 if ($page == "color generator")
                 require("./colorgen.php");
+                if ($page == "print")
+                require("print.php");
             ?>
         </div>
     </body>
