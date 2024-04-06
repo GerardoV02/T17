@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html>
 <!--
 Classes:
 - Title="PageTitle"
@@ -6,7 +8,8 @@ Classes:
 <?php
 require("./navbar/navbar.php");
 ?>
-<br>
+<link href="./style.css" rel="stylesheet">
+<div id = "Container">
 <br>
 
 <h1 class="PageTitle">Color Generator</h1>
@@ -72,3 +75,67 @@ require("./navbar/navbar.php");
     ?>
     <input type="submit">
 </form>
+
+<!--- BOTTOM TABLE --->
+
+<?php
+
+$table = '<table class = "BottomTable">';
+
+if(isset($_GET["dimensions"])){
+    $dim = $_GET["dimensions"];
+
+$letterNum = ord('A');
+
+for($i = 0; $i < $dim+1; $i++){
+    $table.="<tr>";
+    //echo("<tr>");
+
+    for($j = 0; $j < $dim+1;$j++){
+
+        //Left uppermost empty
+        if($i == 0 && $j == 0){
+            $table.='<td class = "Cell"></td>';
+            continue;
+        }
+
+        //Echos out letter for top rows
+        if($i == 0){
+            $letter = chr($letterNum);
+            $table.='<td class = "Cell">'.$letter.'</td>';
+            $letterNum++;
+            continue;
+        }
+
+        if($j == 0){
+            $table.='<td class = "Cell">'.$i.'</td>';
+            continue;
+        }
+
+        $table.='<td class = "Cell">';
+
+        //content here
+
+        $table.='</td>';
+
+    }
+    $table.='</tr>';
+}
+}
+echo('</table>');
+
+echo($table);
+
+$formatted_table = addslashes($table);
+echo("<button id = 'print' onclick = 'myFunction(\"$formatted_table\")'>Print</button>");
+?>
+
+
+
+<script>
+    function myFunction(contents){
+        document.getElementById('Container').innerHTML = contents;
+    }
+</script>
+</div>
+</html>

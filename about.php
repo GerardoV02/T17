@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <!--
 Classes:
 - Title="PageTitle"
@@ -5,7 +7,15 @@ Classes:
 - Images="MemberPic"
 - Bio paragraphs="Bio"
 -->
-<h1 class="PageTitle"><?php echo ucwords($page);?></h1>
+
+<?php 
+    require("./navbar/navbar.php");
+    echo("<br><br>");
+?>
+<link href="./style.css" rel="stylesheet">
+<div id = "Container">
+
+<h1 class="PageTitle">About</h1>
 
 <h3 class="MemberName">Gerardo Valenzuela</h3>
 <img class="MemberPic" src="Images/gerardo.jpg" alt="Image go here" width=400px>
@@ -26,3 +36,4 @@ Classes:
 <img class="MemberPic" src="Images/josh.jpg" alt="Image go here" width=400px>
 <p class="Bio">Hello! My Name is Josh Underwood and I am a 4th year student.</p>
 <p class="Bio">Some cool facts about me: I really enjoy snowboarding and playing basketball, and coding I guess.</p>
+</div>
