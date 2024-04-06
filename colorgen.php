@@ -73,13 +73,44 @@ require("./navbar/navbar.php");
     <br> ";
     }
     ?>
-    <input type="submit">
+    <input type="submit" value = "Confirm">
 </form>
+
+
+
 
 <!--- BOTTOM TABLE --->
 
+
+
+
+
 <?php
 
+//Creating a string that will be used to hold a new class for easy formatting
+//This formatted_print variable will be what our print menu will be based on
+$formatted_print = '<h2>Selected Colors:</h2>';
+$formatted_print .= '<div id = "printPage">';
+
+//Creating a string that is going to hold the colors picked for printing
+$colorInfo = '<ul>';
+
+if(isset($_GET["colors"])){
+    $colors = $_GET["colors"];
+    for($i = 0; $i < $colors; $i++){
+        if(isset($_POST["color$i"])){
+            $colorInfo.='<li>'.$_POST['color'.$i].'</li>';
+        }
+    }
+}
+$colorInfo .= '</ul>';
+echo($colorInfo);
+
+
+//adding color info to the print information
+$formatted_print.=$colorInfo;
+
+//Creating the n+1 x n+1 table
 $table = '<table class = "BottomTable">';
 
 if(isset($_GET["dimensions"])){
@@ -107,6 +138,7 @@ for($i = 0; $i < $dim+1; $i++){
             continue;
         }
 
+        //Echos out numbers for leftmost columns
         if($j == 0){
             $table.='<td class = "Cell">'.$i.'</td>';
             continue;
@@ -122,18 +154,21 @@ for($i = 0; $i < $dim+1; $i++){
     $table.='</tr>';
 }
 }
-echo('</table>');
+$table.='</table>';
 
 echo($table);
 
-$formatted_table = addslashes($table);
-echo("<button id = 'print' onclick = 'myFunction(\"$formatted_table\")'>Print</button>");
+//Adding escape characters to the table so that way it can be treated and passed as a string to the printScreen function
+$formatted_print.=$table;
+$formatted_print.='</div>';
+$formatted_print = addslashes($formatted_print);
+
+echo("<button id = 'print' onclick = 'printScreen(\"$formatted_print\")'>Print</button>");
 ?>
 
 
-
 <script>
-    function myFunction(contents){
+    function printScreen(contents){
         document.getElementById('Container').innerHTML = contents;
     }
 </script>
