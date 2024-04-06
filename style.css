@@ -54,3 +54,19 @@ body {
     border-style: outset;
     border-color: #2E2C3D;
 }
+
+#printMenu{
+    float:left;
+}
+#printPage{
+    margin: auto;
+    width: 60%;
+    color: black;
+    background-color: white;
+    padding-bottom:30%;
+}
+
+#printPage .BottomTable{
+    margin: auto;
+}
+
