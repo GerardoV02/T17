@@ -89,8 +89,9 @@ require("./navbar/navbar.php");
 
 //Creating a string that will be used to hold a new class for easy formatting
 //This formatted_print variable will be what our print menu will be based on
-$formatted_print = '<h2>Selected Colors:</h2>';
-$formatted_print .= '<div id = "printPage">';
+
+$formatted_print = '<div id = "printPage">';
+$formatted_print .= '<h2>Selected Colors:</h2>';
 
 //Creating a string that is going to hold the colors picked for printing
 $colorInfo = '<ul>';
