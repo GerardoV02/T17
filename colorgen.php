@@ -12,10 +12,10 @@ require("./navbar/navbar.php");
 <div id = "Container">
 <br>
 
+<!--- FORM --->
 <h1 class="PageTitle">Color Generator</h1>
 
 <form method="get">
-
     <div class="DimensionsForm">
     <label for="dimensions">Dimension = </label>   
     <?php
@@ -35,10 +35,12 @@ require("./navbar/navbar.php");
         echo "<input type=\"range\" id=\"colors\" name=\"colors\" min=\"1\" max=\"10\" value=\"$colors\">";
         echo "colors = $colors";
     ?>
-    
-    <input type="submit">
+    <br>
+    <button type="submit">Set Colors and Dimensions values</button>
 </form>
-
+<br>
+------------------------------------------------------------------------------------------------------------------------
+<br>
 <form method="post" action="colorgen.php?dimensions=<?php echo($dimensions);?>&colors=<?php echo($colors);?>">
 
     <div class = "SelectColorsForm">
@@ -73,8 +75,11 @@ require("./navbar/navbar.php");
     <br> ";
     }
     ?>
-    <input type="submit">
+    <button type="submit">Set Color Values</button>
 </form>
+<!--- FORM VALIDATOR --->
+
+
 
 <!--- BOTTOM TABLE --->
 
