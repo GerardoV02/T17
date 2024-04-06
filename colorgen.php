@@ -59,28 +59,110 @@ require("./navbar/navbar.php");
             $selectedColor = strtoupper($thiscolor);
             }
     echo "
-        <label for=\"color$i\">Color$i</label>
+        <label id = \"labelcolor$i\" for=\"color$i\">Color$i</label>
         <select name=\"color$i\" id=\"color\"> 
-            <option value=\"$thiscolor\">$selectedColor</option>
-            <option value=\"red\">RED</option>
-            <option value=\"orange\">ORANGE</option>
-            <option value=\"yellow\">YELLOW</option>
-            <option value=\"green\">GREEN</option>
-            <option value=\"blue\">BLUE</option>
-            <option value=\"purple\">PURPLE</option>
-            <option value=\"grey\">GREY</option>
-            <option value=\"brown\">BROWN</option>
-            <option value=\"black\">BLACK</option>
-            <option value=\"teal\">TEAL</option>
-        </select>
+            <option id = \"selectedcolor$i\" value=\"$thiscolor\">$selectedColor</option>
+            <option id = \"redOPTION\" value=\"red\">RED</option>
+            <option id = \"orangeOPTION\" value=\"orange\">ORANGE</option>
+            <option id = \"yellowOPTION\" value=\"yellow\">YELLOW</option>
+            <option id = \"greenOPTION\" value=\"green\">GREEN</option>
+            <option id = \"blueOPTION\" value=\"blue\">BLUE</option>
+            <option id = \"purpleOPTION\" value=\"purple\">PURPLE</option>
+            <option id = \"greyOPTION\" value=\"grey\">GREY</option>
+            <option id = \"brownOPTION\" value=\"brown\">BROWN</option>
+            <option id = \"blackOPTION\" value=\"black\">BLACK</option>
+            <option id = \"tealOPTION\" value=\"teal\">TEAL</option>
+        </select> <p hidden = \"true\" id=\"color$i\">$thiscolor</p>
     <br> ";
     }
     ?>
+
+    <p id="valid">Valid</p>
+
     <button type="submit">Set Color Values</button>
 </form>
 <!--- FORM VALIDATOR --->
+<p id="test"></p>
 
+<script language = "JavaScript">
+    let colors = ["red","orange","yellow","green","blue","purple","grey","brown","black","teal"];
+    let valid = true;
+    let message = "";
+    for (var i = 0; i < <?php echo($colors) ?>; i++) 
+    {
 
+        if (removeColor(document.getElementById("color"+i).innerHTML)==true)
+        {
+
+        }
+        else 
+        {
+            newColor = getUnusedColor();
+            document.getElementById("color"+i).innerHTML=newColor;
+            document.getElementById("selectedcolor"+i).innderHTMl=newColor;
+            document.getElementById("selectedcolor"+i).value=newColor;
+            document.getElementById("labelcolor"+i).innderHTML=newColor;
+
+            message+="color"+i+" was invalid. selecting instead color "+newColor+"\n";
+        }
+    }
+
+    document.getElementById("valid").innerHTML=message;
+    function removeColor(color)
+    {
+        index = colors.indexOf(color);
+        if (index!=-1)
+        {
+            colors.splice(index,1);
+            return true;
+        }
+        return false;
+    }
+
+    function getUnusedColor()
+    {
+        return ""+colors.pop();
+    }
+
+    document.getElementById("test").innerHTML=colors.toString();
+
+    /*
+    let colors = ("red","orange","yellow","green","blue","purple","grey","brown","black","teal");
+    let valid = true;
+    let message = "";
+    for (var i = 0; i < <?php echo($colors) ?>; i++) 
+    {
+
+        if (removeColor(document.getElementById("color"+i).innerHTML)==false)
+        {
+
+        }
+        else 
+        {
+            newColor = getUnusedColor();
+            document.getElementById("color"+i).innerHTML=newColor;
+            document.getElementById("selectedcolor"+i).innderHTMl=newColor;
+            document.getElementById("selectedcolor"+i).value=newColor;
+            message+="color"+i+" was invalid. selecting instead color "+newColor+"\n";
+        }
+    }
+    if (!valid)
+        document.getElementById("valid").innerHTML=message;
+    function removeColor(color)
+    {
+        index = colors.indexOf(color);
+        if (index!=-1)
+        {
+            splice(index,1);
+            return true;
+        }
+        return false;
+    }
+    function getUnusedColor()
+    {
+        return ""+colors.get[0];
+    }*/
+</script>
 
 
 
