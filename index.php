@@ -28,8 +28,6 @@
                 require("./about.php");
                 if ($page == "color generator")
                 require("./colorgen.php");
-                if ($page == "print")
-                require("print.php");
             ?>
         </div>
     </body>
