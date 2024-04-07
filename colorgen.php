@@ -91,7 +91,6 @@ require("./navbar/navbar.php");
     let message = "";
     for (var i = 0; i < <?php echo($colors) ?>; i++) 
     {
-
         if (removeColor(document.getElementById("color"+i).innerHTML)==true)
         {
 
@@ -103,8 +102,7 @@ require("./navbar/navbar.php");
             document.getElementById("selectedcolor"+i).innderHTMl=newColor;
             document.getElementById("selectedcolor"+i).value=newColor;
             document.getElementById("labelcolor"+i).innderHTML=newColor;
-
-            message+="color #"+(i++)+" was invalid. selecting instead color "+newColor+"\n";
+            message+="color #"+(i+1)+" was invalid. selecting instead color "+newColor+"\n";
         }
     }
 
