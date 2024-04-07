@@ -2,7 +2,7 @@ body {
     --colour1: #FFFEFE;
     --colour2: #D6493B;
     --colour3: #2E2C3D;
-    --colour4: #888070;
+    --colour4: #FEBB70;
     font-family: Calibri, 'Trebuchet MS', sans-serif;
     color: var(--colour1);
     background-color: var(--colour3);
@@ -70,3 +70,7 @@ body {
     margin: auto;
 }
 
+a {
+    color: var(--colour4);
+    text-decoration: none;
+}

@@ -23,21 +23,21 @@ require("./navbar/navbar.php");
         $dimensions = 1;
         if(isset($_GET["dimensions"]))
             $dimensions = $_GET["dimensions"];
-        echo "<input type=\"range\" id=\"dimensions\" name=\"dimensions\" min=\"1\" max=\"26\" value=\"$dimensions\">";
-        echo "dimensions = $dimensions";
+        echo "<output name=\"out_d\" for=\"colors\">$dimensions</output>";
+        echo "<br><input type=\"range\" id=\"dimensions\" name=\"dimensions\" min=\"1\" max=\"26\" value=\"$dimensions\" oninput=\"out_d.value=this.value\">";
     ?>
 
     <div class="ColorsForm">
-    <label for="colors">Colors = </label>   
+    <label for="colors">Number of Colors = </label>   
     <?php
         $colors = 1;
         if(isset($_GET["colors"]))
             $colors = $_GET["colors"];
-        echo "<input type=\"range\" id=\"colors\" name=\"colors\" min=\"1\" max=\"10\" value=\"$colors\">";
-        echo "colors = $colors";
+        echo "<output name=\"out_c\" for=\"colors\">$colors</output>";
+        echo "<br><input type=\"range\" id=\"colors\" name=\"colors\" min=\"1\" max=\"10\" value=\"$colors\" oninput=\"out_c.value=this.value\">";
     ?>
     <br>
-    <button type="submit">Set Colors and Dimensions values</button>
+    <button type="submit">Update</button>
 </form>
 <br>
 ------------------------------------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ require("./navbar/navbar.php");
 
     <div class = "SelectColorsForm">
     <?php
-        for ($i = 0; $i <$colors; $i++)
+        for ($i = 0; $i < $colors; $i++)
         {
             $thiscolor= "";
             $selectedColor = "---choosecolor---";
@@ -56,10 +56,11 @@ require("./navbar/navbar.php");
             }
             if ($thiscolor!="")
             {
-            $selectedColor = strtoupper($thiscolor);
+                $selectedColor = strtoupper($thiscolor);
             }
+    $j = $i + 1;
     echo "
-        <label id = \"labelcolor$i\" for=\"color$i\">Color$i</label>
+        <label id = \"labelcolor$i\" for=\"color$i\">Color #$j</label>
         <select name=\"color$i\" id=\"color\"> 
             <option id = \"selectedcolor$i\" value=\"$thiscolor\">$selectedColor</option>
             <option id = \"redOPTION\" value=\"red\">RED</option>
@@ -79,7 +80,7 @@ require("./navbar/navbar.php");
 
     <p id="valid">Valid</p>
 
-    <button type="submit">Set Color Values</button>
+    <button type="submit">Set Colors</button>
 </form>
 <!--- FORM VALIDATOR --->
 <p id="test"></p>
@@ -103,7 +104,7 @@ require("./navbar/navbar.php");
             document.getElementById("selectedcolor"+i).value=newColor;
             document.getElementById("labelcolor"+i).innderHTML=newColor;
 
-            message+="color"+i+" was invalid. selecting instead color "+newColor+"\n";
+            message+="color #"+(i++)+" was invalid. selecting instead color "+newColor+"\n";
         }
     }
 
