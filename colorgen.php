@@ -6,11 +6,12 @@ Classes:
 - Bottom Table = "BottomTable"
 - printInfo = 'printPage'
 -->
+
+<link href="./style.css" rel="stylesheet">
+<div id = "Container">
 <?php
 require("./navbar/navbar.php");
 ?>
-<link href="./style.css" rel="stylesheet">
-<div id = "Container">
 <br>
 
 <!--- FORM --->
@@ -152,6 +153,11 @@ require("./navbar/navbar.php");
 //Creating a string that will be used to hold a new class for easy formatting
 //This formatted_print variable will be what our print menu will be based on
 $formatted_print = '<h1 id = "PrintMenu">Print Menu</h1>';
+
+//This creates a Exit Button from the print Menu
+$formatted_print.='<form method="POST" action="colorgen.php"><button type="submit" name="page" value="color generator" id="Exit">Return to Color Generator</button></form>';
+
+//Throwing the table info into a div for easy printing
 $formatted_print .= '<div id = "printPage">';
 $formatted_print .= '<h2>Selected Colors:</h2>';
 
@@ -167,7 +173,7 @@ if(isset($_GET["colors"])){
     }
 }
 $colorInfo .= '</ul>';
-echo($colorInfo);
+//echo($colorInfo);
 
 
 //adding color info to the print information

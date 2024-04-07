@@ -60,14 +60,35 @@ body {
 }
 #printPage{
     margin: auto;
-    width: 60%;
+    width: 90%;
+    height: 800px;
     color: black;
     background-color: white;
-    padding-bottom:30%;
+    padding-bottom:20%;
 }
 
 #printPage .BottomTable{
     margin: auto;
+}
+
+/*
+    Taking styling from nav bar and applying to print exit button
+*/
+#Exit{
+    font-size: 20px;
+    border: 2px var(--colour2);
+    border-style: none solid;
+    border-radius: 4px;
+    padding: 2px 4px;
+    margin: -1px auto;
+    text-decoration: none;
+    text-decoration: none;
+    background: var(--colour3);
+    color: currentColor;
+}
+
+#Exit:hover {
+    background: var(--colour4);
 }
 
 a {
