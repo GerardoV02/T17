@@ -28,9 +28,9 @@ This input is validated to make sure there are no repeats as each color must be 
 <p class="description of colorgenerator">The colour pallet for this website was created using a random generator, then furthur tweaked until it reached adequate contrast ratios.</p>
 <p><strong>Colours used and their contrast against their main background:</strong></p>
 <ul>
-    <li><strong>Text & NavBar:</strong> <em>#FFFEFE</em> [Against Background: <a href="https://webaim.org/resources/contrastchecker/?fcolor=FFFEFE&bcolor=2E2C3D">13.51</a>]</li>
-    <li><strong>Accent:</strong> <em>#D6493B</em> [Against NavBar: <a href="https://webaim.org/resources/contrastchecker/?fcolor=D6493B&bcolor=FFFEFE">4.27</a>]</li>
-    <li><strong>Hover & Links:</strong> <em>#FEBB70</em> [Against Background: <a href="https://webaim.org/resources/contrastchecker/?fcolor=FEBB70&bcolor=2E2C3D">8.13</a>]</li>
+    <li><strong>Text & NavBar:</strong> <em>#FFFEFE</em> <a href="https://webaim.org/resources/contrastchecker/?fcolor=FFFEFE&bcolor=2E2C3D">[Against Background: 13.51]</a></li>
+    <li><strong>Accent:</strong> <em>#D6493B</em> <a href="https://webaim.org/resources/contrastchecker/?fcolor=D6493B&bcolor=FFFEFE">[Against NavBar: 4.27]</a></li>
+    <li><strong>Hover & Links:</strong> <em>#FEBB70</em> <a href="https://webaim.org/resources/contrastchecker/?fcolor=FEBB70&bcolor=2E2C3D">[Against Background: 8.13]</a></li>
     <li><strong>Background:</strong> <em>#2E2C3D</em></li>
 
 </div>
