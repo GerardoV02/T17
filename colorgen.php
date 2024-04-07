@@ -46,7 +46,7 @@ require("./navbar/navbar.php");
 
     <div class = "SelectColorsForm">
     <?php
-        for ($i = 0; $i < $colors; $i++)
+        for ($i = 1; $i <= $colors; $i++)
         {
             $thiscolor= "";
             $selectedColor = "---choosecolor---";
@@ -58,109 +58,84 @@ require("./navbar/navbar.php");
             {
                 $selectedColor = strtoupper($thiscolor);
             }
-    $j = $i + 1;
-    echo "
-        <label id = \"labelcolor$i\" for=\"color$i\">Color #$j</label>
-        <select name=\"color$i\" id=\"color\"> 
-            <option id = \"selectedcolor$i\" value=\"$thiscolor\">$selectedColor</option>
-            <option id = \"redOPTION\" value=\"red\">RED</option>
-            <option id = \"orangeOPTION\" value=\"orange\">ORANGE</option>
-            <option id = \"yellowOPTION\" value=\"yellow\">YELLOW</option>
-            <option id = \"greenOPTION\" value=\"green\">GREEN</option>
-            <option id = \"blueOPTION\" value=\"blue\">BLUE</option>
-            <option id = \"purpleOPTION\" value=\"purple\">PURPLE</option>
-            <option id = \"greyOPTION\" value=\"grey\">GREY</option>
-            <option id = \"brownOPTION\" value=\"brown\">BROWN</option>
-            <option id = \"blackOPTION\" value=\"black\">BLACK</option>
-            <option id = \"tealOPTION\" value=\"teal\">TEAL</option>
-        </select> <p hidden = \"true\" id=\"color$i\">$thiscolor</p>
+        echo "
+            <label id = \"labelcolor$i\" for=\"color$i\">Color #$i</label>
+            <select name=\"color$i\" id=\"selectcolor$i\"> 
+                <option id = \"selected$i"."OPTION\" value=\"$thiscolor\">$selectedColor</option>
+                <option id = \"redOPTION\" value=\"red\">RED</option>
+                <option id = \"orangeOPTION\" value=\"orange\">ORANGE</option>
+                <option id = \"yellowOPTION\" value=\"yellow\">YELLOW</option>
+                <option id = \"greenOPTION\" value=\"green\">GREEN</option>
+                <option id = \"blueOPTION\" value=\"blue\">BLUE</option>
+                <option id = \"purpleOPTION\" value=\"purple\">PURPLE</option>
+                <option id = \"greyOPTION\" value=\"grey\">GREY</option>
+                <option id = \"brownOPTION\" value=\"brown\">BROWN</option>
+                <option id = \"blackOPTION\" value=\"black\">BLACK</option>
+                <option id = \"tealOPTION\" value=\"teal\">TEAL</option>
+            </select>
     <br> ";
     }
     ?>
-
+    
     <p id="valid">Valid</p>
 
     <button type="submit">Set Colors</button>
 </form>
 <!--- FORM VALIDATOR --->
-<p id="test"></p>
 
 <script language = "JavaScript">
-    let colors = ["red","orange","yellow","green","blue","purple","grey","brown","black","teal"];
-    let valid = true;
+    let unusedColors = ["red","orange","yellow","green","blue","purple","grey","brown","black","teal"];
     let message = "";
-    for (var i = 0; i < <?php echo($colors) ?>; i++) 
+    for (var i = 1; i <= <?php echo($colors) ?>; i++) 
     {
-        if (removeColor(document.getElementById("color"+i).innerHTML)==true)
-        {
+        currentIndex = i;
+        currentColor = document.getElementById("selected"+i+"OPTION").value;
 
+        if (colorIsUnused(currentColor))
+        {
+            removeColorFromUsed(currentColor);
         }
         else 
         {
             newColor = getUnusedColor();
-            document.getElementById("color"+i).innerHTML=newColor;
-            document.getElementById("selectedcolor"+i).innderHTMl=newColor;
-            document.getElementById("selectedcolor"+i).value=newColor;
-            document.getElementById("labelcolor"+i).innderHTML=newColor;
-            message+="color #"+(i+1)+" was invalid. selecting instead color "+newColor+"\n";
+            removeColorFromUsed(newColor);
+            setColorTo(currentIndex, newColor);
+            message+="color #"+(i)+" was invalid. selecting instead color "+newColor+"\n";
         }
-    }
+    displayError(message);
+}
 
-    document.getElementById("valid").innerHTML=message;
-    function removeColor(color)
+
+
+    function displayError(message)
     {
-        index = colors.indexOf(color);
-        if (index!=-1)
-        {
-            colors.splice(index,1);
-            return true;
-        }
-        return false;
-    }
-
-    function getUnusedColor()
-    {
-        return ""+colors.pop();
-    }
-
-    document.getElementById("test").innerHTML=colors.toString();
-
-    /*
-    let colors = ("red","orange","yellow","green","blue","purple","grey","brown","black","teal");
-    let valid = true;
-    let message = "";
-    for (var i = 0; i < <?php echo($colors) ?>; i++) 
-    {
-
-        if (removeColor(document.getElementById("color"+i).innerHTML)==false)
-        {
-
-        }
-        else 
-        {
-            newColor = getUnusedColor();
-            document.getElementById("color"+i).innerHTML=newColor;
-            document.getElementById("selectedcolor"+i).innderHTMl=newColor;
-            document.getElementById("selectedcolor"+i).value=newColor;
-            message+="color"+i+" was invalid. selecting instead color "+newColor+"\n";
-        }
-    }
-    if (!valid)
         document.getElementById("valid").innerHTML=message;
-    function removeColor(color)
+    }
+    function setColorTo(index,color)
     {
-        index = colors.indexOf(color);
+        document.getElementById("selected"+index+"OPTION").value=color;
+    }
+    function colorIsUnused(color)
+    {
+        return (unusedColors.indexOf(color)!=-1);
+    }
+    function removeColorFromUsed(color)
+    {
+        index = unusedColors.indexOf(color);
         if (index!=-1)
         {
-            splice(index,1);
+            unusedColors.splice(index,1);
             return true;
         }
         return false;
     }
+
     function getUnusedColor()
     {
-        return ""+colors.get[0];
-    }*/
+        return ""+unusedColors[0];
+    }
+
+
 </script>
 
 
@@ -185,7 +160,7 @@ $colorInfo = '<ul>';
 
 if(isset($_GET["colors"])){
     $colors = $_GET["colors"];
-    for($i = 0; $i < $colors; $i++){
+    for($i = 1; $i <= $colors; $i++){
         if(isset($_POST["color$i"])){
             $colorInfo.='<li>'.$_POST['color'.$i].'</li>';
         }
