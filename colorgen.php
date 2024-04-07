@@ -60,7 +60,7 @@ require("./navbar/navbar.php");
             }
     $j = $i + 1;
     echo "
-        <label id = \"labelcolor$i\" for=\"color$i\">Color #$j</label>
+        <label id = \"labelcolor$i\" for=\"color$i\">Color #$i</label>
         <select name=\"color$i\" id=\"color\"> 
             <option id = \"selectedcolor$i\" value=\"$thiscolor\">$selectedColor</option>
             <option id = \"redOPTION\" value=\"red\">RED</option>
@@ -91,7 +91,6 @@ require("./navbar/navbar.php");
     let message = "";
     for (var i = 0; i < <?php echo($colors) ?>; i++) 
     {
-
         if (removeColor(document.getElementById("color"+i).innerHTML)==true)
         {
 
@@ -103,8 +102,7 @@ require("./navbar/navbar.php");
             document.getElementById("selectedcolor"+i).innderHTMl=newColor;
             document.getElementById("selectedcolor"+i).value=newColor;
             document.getElementById("labelcolor"+i).innderHTML=newColor;
-
-            message+="color #"+(i++)+" was invalid. selecting instead color "+newColor+"\n";
+            message+="color #"+(i)+" was invalid. selecting instead color "+newColor+"\n";
         }
     }
 
