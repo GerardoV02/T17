@@ -33,7 +33,7 @@ Classes:
 <p class="Bio"><strong>Some cool facts about me:</strong> I enjoy digital art, music, 3D modeling/rendering, games, and more.<br>I have created many games primarily using Unity and Unreal Engine (though I have never completed any)</p>
 
 <h3 class="MemberName">Josh Underwood</h3>
-<img class="MemberPic" src="Images/josh.jpg" alt="Image go here" width=400px>
+<img class="MemberPic" src="Images/Avatar.JPG" alt="Image go here" width=400px>
 <p class="Bio">Hello! My Name is Josh Underwood and I am a 4th year student.</p>
 <p class="Bio">Some cool facts about me: I really enjoy snowboarding and playing basketball, and coding I guess.</p>
 </div>
