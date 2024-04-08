@@ -38,10 +38,14 @@ require("./navbar/navbar.php");
         echo "<br><input type=\"range\" id=\"colors\" name=\"colors\" min=\"1\" max=\"10\" value=\"$colors\" oninput=\"out_c.value=this.value\">";
     ?>
     <br>
+    <br>
     <button type="submit">Update</button>
 </form>
 <br>
-------------------------------------------------------------------------------------------------------------------------
+<br>
+<br>
+<hr>
+<br>
 <br>
 <form method="post" action="colorgen.php?dimensions=<?php echo($dimensions);?>&colors=<?php echo($colors);?>">
 
@@ -81,6 +85,8 @@ require("./navbar/navbar.php");
     <p id="valid">Valid</p>
 
     <button type="submit">Set Colors</button>
+    <br>
+    <br>
 </form>
 <!--- FORM VALIDATOR --->
 
@@ -232,7 +238,7 @@ $formatted_print.=$table;
 $formatted_print.='</div>';
 $formatted_print = addslashes($formatted_print);
 
-echo("<button id = 'print' onclick = 'printScreen(\"$formatted_print\")'>Print</button>");
+echo("<br><button id = 'print' onclick = 'printScreen(\"$formatted_print\")'>Print</button>");
 ?>
 
 
