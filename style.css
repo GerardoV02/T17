@@ -58,23 +58,27 @@ body {
     border-width: 1px;
     border-style: outset;
     border-color: #2E2C3D;
+    background-color: var(--colour1);
+    color: var(--colour3);
 }
 
 #printMenu{
     float:left;
 }
+
 #printPage{
     margin: auto;
-    width: 90%;
-    height: 800px;
+    width: 800px;
+    height: 1000px;
     color: black;
     background-color: white;
-    padding-bottom:20%;
 }
 
 #printPage .BottomTable{
     margin: auto;
 }
+
+
 
 /*
     Taking styling from nav bar and applying to print exit button
