@@ -32,7 +32,7 @@ for($i = 0; $i < $dim+1; $i++){
             continue;
         }
 
-        $table.='<td class = "Cell">';
+        $table.='<td class = "Cell" id="' . sprintf('%02d%02d', $j - 1, $i - 1) . '>';
 
         //content here
 
