@@ -8,13 +8,14 @@ Classes:
 -->
 
 <link href="./style.css" rel="stylesheet">
-<div id = "Container">
+
 <?php
 require("./navbar/navbar.php");
 ?>
 <br>
 
 <!--- FORM --->
+<div id = "Container">
 <h1 class="PageTitle">Color Generator</h1>
 
 <form method="get">
