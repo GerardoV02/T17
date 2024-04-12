@@ -3,8 +3,17 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="database/script.js"></script>
+    <link href="./style.css" rel="stylesheet">
 </head>
+
+<?php 
+    require("./navbar/navbar.php");
+    echo("<br><br>");
+?>
+
 <h1>Database Page</h1>
+
+<div id = "Container">
 <body>
     <h1>WIP</h1>
     <button id="test">Button</button>
@@ -13,7 +22,7 @@
     <div id = "content"></div>
 </body>
 
-
+</div>
 
 
 
