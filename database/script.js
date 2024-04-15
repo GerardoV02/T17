@@ -1,17 +1,17 @@
-$(document).read(function (){
-    $("#test").click();
+$(document).ready(function (){
+    $("#test").click(load);
 });
 
 function load(){
-    $.get("database.php",{"count": 5, "table":"colors"}, (data) =>{
-        $(".content").html(convert(jQuery.parseJSON(data)));
+    $.get("database/database.php",{"count": 5, "table":"colors"}, (data) => {
+        $("#content").html(convert(jQuery.parseJSON(data)));
     })
 }
 
 function convert(json_data) {
     // Get the container element where the table will be inserted
     // Create the table element
-    let table = $("<table>");
+    let table = $("<table id = 'db'>");
 
     // Get the keys (column names) of the first object in the JSON data
     let cols = Object.keys(json_data[0]);
@@ -35,7 +35,7 @@ function convert(json_data) {
 
         // Loop through the values and create table cells
         $.each(vals, (i, elem) => {
-            let td = $("<td>");
+            let td = $("<td class = 'Cell'>");
             td.text(elem); // Set the value as the text of the table cell
             tr.append(td); // Append the table cell to the table row
         });
