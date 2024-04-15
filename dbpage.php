@@ -19,8 +19,7 @@
 <div id = "Container">
 <h1 class = "PageTitle">Database Page</h1>
 <body>
-    <h1>WIP</h1>
-    <button id="test">Button</button>
+    <button id="test">Show Table</button>
 
     <!-- this div will be used to load content from database -->
     <div id = "content"></div>
