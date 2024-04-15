@@ -11,7 +11,7 @@
 
 <?php 
     require("./navbar/navbar.php");
-    echo("<br><br>");
+    // echo("<br><br>");
 ?>
 
 

@@ -1,11 +1,7 @@
 <?php
 $servername = "faure";
 
-$username = "gerardov";
-$password = "835403430";
-$db = "gerardov";
-
-//include '../login.php';
+include '../../login.php';
 
 $count = isset($_GET["count"]) ? $_GET["count"] : "10";
 $table = isset($_GET["table"]) ? strtolower($_GET["table"]) : "colors";

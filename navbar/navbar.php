@@ -10,7 +10,7 @@
     <form method="POST" action="about.php">
         <button type="submit" name="page" value="about" class="button"><div class="AboutIco"></div>About</button>
     </form>
-    <form method="POST" action="database.php">
+    <form method="POST" action="dbpage.php">
         <button type="submit" name="page" value="about" class="button"></div>Database</button>
     </form>
 </nav>
