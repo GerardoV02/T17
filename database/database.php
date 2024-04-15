@@ -1,7 +1,14 @@
 <?php
 $servername = "faure";
 
-include '../login.php';
+$username = "gerardov";
+$password = "835403430";
+$db = "gerardov";
+
+//include '../login.php';
+
+$count = isset($_GET["count"]) ? $_GET["count"] : "10";
+$table = isset($_GET["table"]) ? strtolower($_GET["table"]) : "colors";
 
 $conn = new mysqli($servername,$username,$password, $db);
 
@@ -11,7 +18,7 @@ if ($conn->connect_error) {
 }
 
 //Sample query
-$sql = "SELECT * FROM COLORS";
+$sql = "SELECT * FROM $table";
 
 $result = $conn->query($sql);
 
@@ -20,4 +27,3 @@ while ($row = $result->fetch_assoc())
   array_push($output, $row);
 echo json_encode($output);
 exit();
-?>

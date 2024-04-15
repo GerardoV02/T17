@@ -1,10 +1,10 @@
-$(document).read(function (){
-    $("#test").click();
+$(document).ready(function (){
+    $("#test").click(load);
 });
 
 function load(){
-    $.get("database.php",{"count": 5, "table":"colors"}, (data) =>{
-        $(".content").html(convert(jQuery.parseJSON(data)));
+    $.get("database.php",{"count": 5, "table":"colors"}, (data) => {
+        $("#content").html(convert(jQuery.parseJSON(data)));
     })
 }
 
