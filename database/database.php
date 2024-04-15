@@ -1,8 +1,7 @@
 <?php
 $servername = "faure";
-$username;
-$password;//password go here
-$db;
+
+include '../login.php';
 
 $conn = new mysqli($servername,$username,$password, $db);
 
