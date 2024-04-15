@@ -85,7 +85,7 @@ require("./navbar/navbar.php");
             usedColors[getAlreadyUsedIndex(color)]=currentColor;
         }
         usedColors[index]=color;
-        print();
+        updateValues();
     }
     function updateValues()
     {
