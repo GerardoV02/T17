@@ -17,7 +17,7 @@
 
 
 <div id = "Container">
-<h1>Database Page</h1>
+<h1 class = "PageTitle">Database Page</h1>
 <body>
     <h1>WIP</h1>
     <button id="test">Button</button>
