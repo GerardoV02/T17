@@ -3,8 +3,11 @@ $servername = "faure";
 
 include '../../login.php';
 
-$count = isset($_GET["count"]) ? $_GET["count"] : "10";
-$table = isset($_GET["table"]) ? strtolower($_GET["table"]) : "colors";
+//Table
+
+$show = isset($_GET["show"]) ? $_GET["show"] : "N/A";
+$name = isset($_GET["name"]) ? $_GET["name"] : "N/A";
+$hex = isset($_GET["hex"]) ? $_GET["hex"] : "N/A";
 
 $conn = new mysqli($servername,$username,$password, $db);
 
@@ -13,8 +16,17 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-//Sample query
-$sql = "SELECT * FROM $table";
+//Query variable
+$sql;
+
+//If the show variable is set to yes, then display the table
+if($show == "yes"){
+  $sql = "SELECT * FROM colors";
+}
+//INSERT INTO colors(colorName, Hex) values("red","FF0000");
+if($name != "N/A" && $hex != "N/A"){
+  $sql = "INSERT INTO colors(colorName,Hex) values($name,$hex)";
+}
 
 $result = $conn->query($sql);
 

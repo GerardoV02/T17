@@ -1,11 +1,22 @@
 $(document).ready(function (){
-    $("#test").click(load);
+    $("#show").click(load);
+    $("#add").click(addColor);
 });
 
 function load(){
-    $.get("database/database.php",{"count": 5, "table":"colors"}, (data) => {
+    $.get("database/database.php",{"show": "yes"}, (data) => {
         $("#content").html(convert(jQuery.parseJSON(data)));
     })
+}
+
+function addColor(){
+    let name = document.getElementById("newColorName").value.trim();
+    let hex = document.getElementById("newColorHex").value.trim();
+
+
+    $.get("database/database.php",{"name": name, "hex":hex}, (data) => {
+        $("#content").html("Added color: " + name + " hex: " + hex + " to database");
+    });
 }
 
 function convert(json_data) {
