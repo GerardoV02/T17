@@ -48,34 +48,32 @@ require("./navbar/navbar.php");
 <hr>
 <br>
 <br>
-<form method="post" action="colorgen.php?dimension_num=<?php echo($dimension_num);?>&color_num=<?php echo($color_num);?>">
+<form id= "colorSelectForm" method="post" action="colorgen.php?dimension_num=<?php echo($dimension_num);?>&color_num=<?php echo($color_num);?>">
+
 
 <?php
+
     $color_num = isset($_GET["color_num"])?$_GET["color_num"]:1;
-    $colors = ["red", "orange", "yellow", "green", "blue", "purple", "grey", "brown", "black", "teal"];
-    for ($i = 0; $i < $color_num; $i++) {
-        echo "<select onchange='setColor($i, this.value)' name='color$i' id='color$i'>";
-        foreach ($colors as $color) 
+    $colorsPossible = ["red", "orange", "yellow", "green", "blue", "purple", "grey", "brown", "black", "teal"];
+    $colorsSelected = isset($_POST["colors"])?$_POST["colors"]:$colorsPossible;
+    echo("[".implode(",",$colorsSelected)."]"."<br>");
+    for ($i = 0; $i < 10; $i++) {
+        $hidden = $i>$color_num-1?"style='display:none'":"";
+        echo " <select $hidden name='colors[]' onchange='setColor($i,this.value)' id='color$i'> ";
+        foreach ($colorsPossible as $color) 
         {
-            echo "<option id='color{$i}{$color}' value='$color'$selected>" . strtoupper($color) . "</option>";
+            $selected = $colorsSelected[$i]==$color?"selected":"";
+            echo " <option id='color{$i}{$color}' value='$color'$selected>". strtoupper($color) . "</option> ";
         }
         echo "</select>";
-        echo "<br>";
     }
 ?>
 <br>
-<button type="submit">Set Colors</button>
 </form>
 
 <script>
     let color_num = <?php echo(isset($_GET["color_num"])?$_GET["color_num"]:1);?>;
     let usedColors = getUsedColors();
-    updateValues();
-    function getUsedColors()
-    {
-        colors = ['red','orange','yellow','green','blue','purple','grey', 'brown','black','teal'];
-        return colors.splice(0,color_num);
-    }
     function setColor(index,color)
     {
         currentColor = usedColors[index];
@@ -86,10 +84,11 @@ require("./navbar/navbar.php");
         }
         usedColors[index]=color;
         updateValues();
+        document.getElementById('colorSelectForm').submit();
     }
     function updateValues()
     {
-        for (index = 0; index<color_num; index++)
+        for (index = 0; index<10; index++)
         {
             document.getElementById("color"+index).value=usedColors[index];
         }
@@ -102,14 +101,17 @@ require("./navbar/navbar.php");
     {
         return usedColors.indexOf(color);
     }
-
+    function getUsedColors()
+    {
+        return <?php
+        $colorsPossible = ["red", "orange", "yellow", "green", "blue", "purple", "grey", "brown", "black", "teal"];
+        $colorsSelected = isset($_POST["colors"])?$_POST["colors"]:$colorsPossible;
+        echo("[\"".implode("\",\"",$colorsSelected)."\"]");
+        ?> ;
+    }
 </script>
 
-</form>
-
-
-<!--- BOTTOM TABLE --->
-
+<!-- BOTTOM TABLE -->
 
 
 
@@ -131,11 +133,11 @@ $formatted_print .= '<h2>Selected Colors:</h2>';
 $colorInfo = '<ul>';
 
 if(isset($_GET["color_num"])){
-    $colors = $_GET["color_num"];
-    for($i = 0; $i <= $colors; $i++){
-        if(isset($_POST["color$i"])){
-            $colorInfo.='<li>'.$_POST['color'.$i].'</li>';
-        }
+    $color_num = $_GET["color_num"];
+    $colors = isset($_POST["colors"])?$_POST["colors"]:["red", "orange", "yellow", "green", "blue", "purple", "grey", "brown", "black", "teal"];
+    for ($i = 0; $i<$color_num; $i++)
+    {
+        $colorInfo.='<li>'.$colors[$i].'</li>';
     }
 }
 $colorInfo .= '</ul>';
