@@ -52,22 +52,45 @@ require("./navbar/navbar.php");
 
 
 <?php
-
+    
     $color_num = isset($_GET["color_num"])?$_GET["color_num"]:1;
     $colorsPossible = ["red", "orange", "yellow", "green", "blue", "purple", "grey", "brown", "black", "teal"];
     $colorsSelected = isset($_POST["colors"])?$_POST["colors"]:$colorsPossible;
-    echo("[".implode(",",$colorsSelected)."]"."<br>");
+    //echo("[".implode(",",$colorsSelected)."]"."<br>");
+    echo("<table style=\"border: 3px solid black; border-collapse: collapse;\">");
+    echo("<tr>");
     for ($i = 0; $i < 10; $i++) {
-        $hidden = $i>$color_num-1?"style='display:none'":"";
-        echo " <select $hidden name='colors[]' onchange='setColor($i,this.value)' id='color$i'> ";
-        foreach ($colorsPossible as $color) 
+        $hidden = $i>$color_num-1;
+        if ($hidden)
         {
-            $selected = $colorsSelected[$i]==$color?"selected":"";
-            echo " <option id='color{$i}{$color}' value='$color'$selected>". strtoupper($color) . "</option> ";
+            echo " <select style='display:none' name='colors[]' onchange='setColor($i,this.value)' id='color$i'> ";
+            //echo " <option id='color{$i}{$color}' value='$colorsSelected[$i]'>". strtoupper($color) . "</option>";
         }
-        echo "</select>";
+        else
+        {
+            echo("<td style=\"border: 3px solid black; border-collapse: collapse;\">");
+            echo "<select name='colors[]' onchange='setColor($i,this.value)' id='color$i'>";
+            foreach ($colorsPossible as $color) 
+            {
+                $selected = $colorsSelected[$i]==$color?"selected":"";
+                echo "<option id='color{$i}{$color}' value='$color'$selected>". strtoupper($color) . "</option>";
+            }
+            echo "</select>";
+            echo("</td>");
+        }
     }
-?>
+    echo("</tr>");
+    echo("<tr>");
+    for ($i = 0; $i < $color_num; $i++)
+    {
+        echo("<td style=\"border: 3px solid black; border-collapse: collapse;\"id='cell$colorsSelected[$i]'>");
+        echo("</td>");
+    }
+    echo("</tr>");
+    echo("</table>"); 
+
+    ?>
+    
 <br>
 </form>
 
@@ -150,9 +173,7 @@ $formatted_print.=$colorInfo;
 //Creating the n+1 x n+1 table
 $table = '<table class = "BottomTable">';
 
-if(isset($_GET["dimension_num"])){
-    $dim = $_GET["dimension_num"];
-
+$dim = isset($_GET["dimension_num"])?$_GET["dimension_num"]:1;
 $letterNum = ord('A');
 
 for($i = 0; $i < $dim+1; $i++){
@@ -189,7 +210,6 @@ for($i = 0; $i < $dim+1; $i++){
 
     }
     $table.='</tr>';
-}
 }
 $table.='</table>';
 
