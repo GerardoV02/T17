@@ -201,7 +201,7 @@ $formatted_print.=$table;
 $formatted_print.='</div>';
 $formatted_print = addslashes($formatted_print);
 
-echo("<br><button id = 'print' onclick = 'printScreen(\"$formatted_print\")'>Print</button>");
+echo("<br><button id = 'print' onclick = 'printScreen(\"$formatted_print\")'>Print Preview</button>");
 ?>
 
 
