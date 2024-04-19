@@ -56,7 +56,7 @@ require("./navbar/navbar.php");
     $color_num = isset($_GET["color_num"])?$_GET["color_num"]:1;
     $colorsPossible = ["red", "orange", "yellow", "green", "blue", "purple", "grey", "brown", "black", "teal"];
     $colorsSelected = isset($_POST["colors"])?$_POST["colors"]:$colorsPossible;
-    echo("[".implode(",",$colorsSelected)."]"."<br>");
+    //echo("[".implode(",",$colorsSelected)."]"."<br>");
     for ($i = 0; $i < 10; $i++) {
         $hidden = $i>$color_num-1?"style='display:none'":"";
         echo " <select $hidden name='colors[]' onchange='setColor($i,this.value)' id='color$i'> ";
@@ -151,8 +151,7 @@ $formatted_print.=$colorInfo;
 //Creating the n+1 x n+1 table
 $table = '<table class = "BottomTable">';
 
-if(isset($_GET["dimension_num"])){
-    $dim = $_GET["dimension_num"];
+$dim = isset($_GET["dimension_num"])?$_GET["dimension_num"]:1;
 
 $letterNum = ord('A');
 
@@ -190,7 +189,6 @@ for($i = 0; $i < $dim+1; $i++){
 
     }
     $table.='</tr>';
-}
 }
 $table.='</table>';
 
