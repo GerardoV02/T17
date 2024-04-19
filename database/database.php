@@ -28,6 +28,8 @@ if($name != "N/A" && $hex != "N/A"){
   $sql = "INSERT INTO colors(colorName,Hex) values($name,$hex)";
 }
 
+// $sql = "INSERT INTO colors(colorName,Hex) values($name,$hex)";
+
 $result = $conn->query($sql);
 
 $output = array();
