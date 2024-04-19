@@ -40,6 +40,13 @@ nav {
     mask: url(./icons/gg-about.svg) no-repeat center;
 }
 
+.DataIco {
+    padding: 8px;
+    background-color: var(--colour1);
+    -webkit-mask: url(./icons/gg-database.svg) no-repeat center;
+    mask: url(./icons/gg-database.svg) no-repeat center;
+}
+
 nav .button {
     border: none;
     padding: 2px 4px;
