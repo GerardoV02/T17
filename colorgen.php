@@ -57,20 +57,41 @@ require("./navbar/navbar.php");
     $colorsPossible = ["red", "orange", "yellow", "green", "blue", "purple", "grey", "brown", "black", "teal"];
     $colorsSelected = isset($_POST["colors"])?$_POST["colors"]:$colorsPossible;
     //echo("[".implode(",",$colorsSelected)."]"."<br>");
+    echo("<table style=\"border: 3px solid black; border-collapse: collapse;\">");
     for ($i = 0; $i < 10; $i++) {
-        $hidden = $i>$color_num-1?"style='display:none'":"";
-        echo " <select $hidden name='colors[]' onchange='setColor($i,this.value)' id='color$i'> ";
-        foreach ($colorsPossible as $color) 
+        echo("<tr>");
+        $hidden = $i>$color_num-1;
+        if ($hidden)
         {
-            $selected = $colorsSelected[$i]==$color?"selected":"";
-            echo " <option id='color{$i}{$color}' value='$color'$selected>". strtoupper($color) . "</option> ";
+            echo " <select style='display:none' name='colors[]' onchange='setColor($i,this.value)' id='color$i'> ";
         }
-        echo "</select>";
+        else
+        {
+            //generate the radio forms beside the colors 
+           echo("<td>
+            <input type=\"radio\" name=\"selected_color\" onchange='displaySelectedColor(this.value)' value=\"$colorsSelected[$i]\">
+            <label for=\"option1\"></label>
+            </td>" );
+
+            //generate the color selector 
+            echo("<td style=\"border: 3px solid black; border-collapse: collapse;\">");
+            echo "<select name='colors[]' onchange='setColor($i,this.value)' id='color$i'>";
+            foreach ($colorsPossible as $color) 
+            {
+                $selected = $colorsSelected[$i]==$color?"selected":"";
+                echo "<option id='color{$i}{$color}' value='$color'$selected>". strtoupper($color) . "</option>";
+            }
+            echo "</select>";
+            echo("</td>");
+            echo("<td style=\"border: 3px solid black; border-collapse: collapse;\"id='cell$colorsSelected[$i]'> CELLS: ");
+        }
+        echo("</tr>");
     }
+    echo("</table>"); 
 ?>
 <br>
 </form>
-
+<p id="selectedcolor">none</p>
 <script>
     let color_num = <?php echo(isset($_GET["color_num"])?$_GET["color_num"]:1);?>;
     let usedColors = getUsedColors();
@@ -108,6 +129,10 @@ require("./navbar/navbar.php");
         $colorsSelected = isset($_POST["colors"])?$_POST["colors"]:$colorsPossible;
         echo("[\"".implode("\",\"",$colorsSelected)."\"]");
         ?> ;
+    }
+    function displaySelectedColor(color)
+    {
+        document.getElementById("selectedcolor").innerHTML=(color);
     }
 </script>
 
