@@ -124,6 +124,7 @@ $formatted_print = '<h1 id = "PrintMenu">Print Menu</h1>';
 
 //This creates a Exit Button from the print Menu
 $formatted_print.='<form method="POST" action="colorgen.php"><button type="submit" name="page" value="color generator" id="Exit">Return to Color Generator</button></form>';
+$formatted_print.='<br><button onclick="printInner()">Print</button>';
 
 //Throwing the table info into a div for easy printing
 $formatted_print .= '<div id = "printPage">';
@@ -200,13 +201,24 @@ $formatted_print.=$table;
 $formatted_print.='</div>';
 $formatted_print = addslashes($formatted_print);
 
-echo("<br><button id = 'print' onclick = 'printScreen(\"$formatted_print\")'>Print</button>");
+echo("<br><button id = 'print' onclick = 'printScreen(\"$formatted_print\")'>Print Preview</button>");
 ?>
 
 
 <script>
     function printScreen(contents){
         document.getElementById('Container').innerHTML = contents;
+    }
+
+    function printInner() {
+        var content = document.getElementById("printPage").innerHTML;
+        var newWin = window.open("");
+        newWin.document.write("<link href=\"./print_style.css\" rel=\"stylesheet\">");
+        newWin.document.write(content);
+        setTimeout(() => {
+            newWin.print();
+            newWin.close();
+        }, 100);
     }
 </script>
 </div>

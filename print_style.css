@@ -1,0 +1,37 @@
+body {
+    --colour1: #FFFEFE;
+    --colour2: #D6493B;
+    --colour3: #2E2C3D;
+    --colour4: #FEBB70;
+    font-family: Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.TeamLogo {
+    height: 125px;
+    width: 400px;
+    object-fit: cover;
+    margin-top: -1em;
+    margin-bottom: 0em;
+    margin-left: -3.75em;
+}
+
+.BottomTable{
+    border: 5px;
+    border-color: black;
+    border-style: solid;
+    aspect-ratio: 1/1;
+}
+
+.Cell{
+    font-family: 'Trebuchet MS',sans-serif;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    border-width: 1px;
+    border-style: outset;
+    border-color: #2E2C3D;
+}

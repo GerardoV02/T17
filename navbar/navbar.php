@@ -11,6 +11,6 @@
         <button type="submit" name="page" value="about" class="button"><div class="AboutIco"></div>About</button>
     </form>
     <form method="POST" action="dbpage.php">
-        <button type="submit" name="page" value="about" class="button"></div>Database</button>
+        <button type="submit" name="page" value="about" class="button"><div class="DataIco"></div>Database</button>
     </form>
 </nav>
