@@ -8,6 +8,15 @@ function load(){
     })
 }
 
+function loadAdd(){
+    let newName = document.getElementById('newColorName').value.trim();
+    let newColor = document.getElementById('newColorHex').value.trim();
+
+    
+    let displayResult = document.getElementById('addResult');
+    displayResult.innerHTML = newName + " " + newColor;
+}
+
 function convert(json_data) {
     // Get the container element where the table will be inserted
     // Create the table element

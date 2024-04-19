@@ -23,7 +23,15 @@
 
     <!-- this div will be used to load content from database -->
     <div id = "content"></div>
+
+    <h2>Add A Color</h2>
+    <input type = "text" placeholder="Enter a new color name" id = "newColorName">
+    <input type = "text" placeholder="Enter a new color hex" id = "newColorHex">
+    <button onclick="loadAdd()">Add Color</button> 
+    <div id = "addResult"></div>
 </body>
+
+
 
 </div>
 </html>
