@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 }
 
 
-if($show != "show"){
+if($show == "show"){
   $sql = "SELECT * FROM colors";
 
   $result = $conn->query($sql);
