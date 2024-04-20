@@ -3,7 +3,8 @@ $(document).ready(function (){
 });
 
 function load(){
-    $.get("database/database.php",{"count": 1, "table":"colors"}, (data) => {
+    //Setting GET variable, show, to "show"
+    $.get("database/database.php",{"show":"show"}, (data) => {
         $("#content").html(convert(jQuery.parseJSON(data)));
     })
 }
@@ -18,7 +19,7 @@ function loadAdd(){
     }
 
     if(newHex === ""){
-        alert("Hex was not entered!")
+        alert("Hex was not entered!");
     }
 
     $.get("database/database.php",{"newName":newName, "newHex": newHex}, (data) =>{
