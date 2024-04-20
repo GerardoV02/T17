@@ -5,7 +5,6 @@ include '../../login.php';
 
 $count = isset($_GET["count"]) ? $_GET["count"] : "10";
 $table = isset($_GET["table"]) ? strtolower($_GET["table"]) : "colors";
-
 //Setting variables for potential new colors
 $newName = isset($_GET["newName"]) ? $_GET["newName"] : "N/A";
 $newHex = isset($_GET["newHex"]) ? $_GET["newHex"] : "N/A";
