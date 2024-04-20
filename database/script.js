@@ -12,9 +12,12 @@ function loadAdd(){
     let newName = document.getElementById('newColorName').value.trim();
     let newColor = document.getElementById('newColorHex').value.trim();
 
-    
-    let displayResult = document.getElementById('addResult');
-    displayResult.innerHTML = newName + " " + newColor;
+    $.get("database/database.php",{"newName":newName, "newHex": newHex}, (data) =>{
+        $("addResult").innerHTML(data);
+    })
+
+    //let displayResult = document.getElementById('addResult');
+    //displayResult.innerHTML = newName + " " + newColor;
 }
 
 function convert(json_data) {
