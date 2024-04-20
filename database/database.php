@@ -18,6 +18,18 @@ if ($conn->connect_error) {
 }
 
 
+if($show != "show"){
+  $sql = "SELECT * FROM colors";
+
+  $result = $conn->query($sql);
+  
+  $output = array();
+  while ($row = $result->fetch_assoc())
+    array_push($output, $row);
+  echo json_encode($output);
+  exit();
+}
+
 if($newName != "N/A" && $newHex != "N/A"){
   $sql = "INSERT INTO colors(colorName,Hex) values('$newName', '$newHex')";
 
