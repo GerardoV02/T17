@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 }
 
 
-if($show == "show"){
+if($show != "N/A"){
   $sql = "SELECT * FROM colors";
 
   $result = $conn->query($sql);
@@ -33,13 +33,27 @@ if($show == "show"){
 if($newName != "N/A" && $newHex != "N/A"){
   $sql = "INSERT INTO colors(colorName,Hex) values('$newName', '$newHex')";
 
+  $searchSQL = "SELECT * FROM colors where colorName=$newName OR Hex=$newHex";
+
+  //Running an SQL statement before to check if the data exists in the table
+
   $result;
+
+  // if($resultSet = mysqli_query($conn,$searchSQL)){
+  //   $rows = mysqli_num_rows($resultSet);
+
+  //   if($rows > 0){
+  //     $result = "FAILED: Data exists in database.";
+  //     echo json_encode($result);
+  //     exit();
+  //   }
+  // }
 
   if($conn->query($sql)){
     $result = "SUCCESS: Data inserted into database.";
   }
   else{
-    $result = "FAILED: Data was not inserted into database.";
+    $result = "FAILED: Data was not inserted into database. Duplicate values cannot be added.";
   }
 
   echo json_encode($result);

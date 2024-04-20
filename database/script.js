@@ -25,9 +25,6 @@ function loadAdd(){
     $.get("database/database.php",{"newName":newName, "newHex": newHex }, (data) =>{
         $("#addResult").html(jQuery.parseJSON(data));
     })
-
-    //let displayResult = document.getElementById('addResult');
-    //displayResult.innerHTML = newName + " " + newColor;
 }
 
 function convert(json_data) {
