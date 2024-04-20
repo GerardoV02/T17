@@ -3,6 +3,8 @@ $servername = "faure";
 
 include '../../login.php';
 
+
+
 $show = isset($_GET["table"]) ? strtolower($_GET["table"]) : "N/A";
 //Setting variables for potential new colors
 $newName = isset($_GET["newName"]) ? $_GET["newName"] : "N/A";
@@ -16,19 +18,19 @@ if ($conn->connect_error) {
 }
 
 
-if($show != "show"){
-  $sql = "SELECT * FROM colors";
-
-  $result = $conn->query($sql);
-  
-  $output = array();
-  while ($row = $result->fetch_assoc())
-    array_push($output, $row);
-  echo json_encode($output);
-  exit();
-}
-
 if($newName != "N/A" && $newHex != "N/A"){
-  $sql = "INSERT INTO colors";
+  $sql = "INSERT INTO colors(colorName,Hex) values('$newName', '$newHex')";
+
+  $result;
+
+  if($conn->query($sql)){
+    $result = "SUCCESS: Data inserted into database.";
+  }
+  else{
+    $result = "FAILED: Data was not inserted into database.";
+  }
+
+  echo json_encode($result);
+  exit();
 }
 

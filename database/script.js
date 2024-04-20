@@ -22,8 +22,8 @@ function loadAdd(){
         alert("Hex was not entered!");
     }
 
-    $.get("database/database.php",{"newName":newName, "newHex": newHex}, (data) =>{
-        $("addResult").innerHTML(data);
+    $.get("database/database.php",{"newName":newName, "newHex": newHex }, (data) =>{
+        $("#addResult").html(jQuery.parseJSON(data));
     })
 
     //let displayResult = document.getElementById('addResult');
