@@ -6,7 +6,9 @@ CREATE TABLE colors(
     colorName       varchar(255)    NOT NULL,
     Hex             varchar(255)    NOT NULL,
 
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    UNIQUE KEY unique_colorName (colorName),
+    UNIQUE KEY unique_Hex (Hex)
 );
 
 delete from colors;

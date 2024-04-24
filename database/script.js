@@ -3,8 +3,27 @@ $(document).ready(function (){
 });
 
 function load(){
-    $.get("database/database.php",{"count": 5, "table":"colors"}, (data) => {
+    //Setting GET variable, show, to "show"
+    $.get("database/database.php",{"show":"show"}, (data) => {
         $("#content").html(convert(jQuery.parseJSON(data)));
+    })
+}
+
+function loadAdd(){
+    let newName = document.getElementById('newColorName').value.trim();
+    let newHex = document.getElementById('newColorHex').value.trim();
+
+    //If newName or newHex is empty
+    if(newName === ""){
+        alert("Name was not entered!");
+    }
+
+    if(newHex === ""){
+        alert("Hex was not entered!");
+    }
+
+    $.get("database/database.php",{"newName":newName, "newHex": newHex }, (data) =>{
+        $("#addResult").html(jQuery.parseJSON(data));
     })
 }
 
