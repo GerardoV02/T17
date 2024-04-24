@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+
 <!--
 Classes:
 - Title="PageTitle"
@@ -69,7 +69,7 @@ require("./navbar/navbar.php");
         {
             //generate the radio forms beside the colors 
            echo("<td>
-            <input type=\"radio\" name=\"selected_color\" onchange='displaySelectedColor(this.value)' value=\"$colorsSelected[$i]\">
+            <input type=\"radio\" id=\"selected_color\" name=\"selected_color\" onchange='displaySelectedColor(this.value)' value=\"$colorsSelected[$i]\">
             <label for=\"option1\"></label>
             </td>" );
 
@@ -105,13 +105,13 @@ require("./navbar/navbar.php");
         }
         usedColors[index]=color;
         updateValues();
-        document.getElementById('colorSelectForm').submit();
     }
     function updateValues()
     {
         for (index = 0; index<10; index++)
         {
             document.getElementById("color"+index).value=usedColors[index];
+            document.getElementById("colorprint"+index).innerHTML=usedColors[index];
         }
     }
     function colorAlreadyUsed(color)
@@ -163,9 +163,10 @@ if(isset($_GET["color_num"])){
     $colors = isset($_POST["colors"])?$_POST["colors"]:["red", "orange", "yellow", "green", "blue", "purple", "grey", "brown", "black", "teal"];
     for ($i = 0; $i<$color_num; $i++)
     {
-        $colorInfo.='<li>'.$colors[$i].'</li>';
+        $colorInfo.='<li id="colorprint'.$i.'"></li>';
     }
 }
+
 $colorInfo .= '</ul>';
 //echo($colorInfo);
 
@@ -182,9 +183,14 @@ $letterNum = ord('A');
 
 for($i = 0; $i < $dim+1; $i++){
     $table.="<tr>";
+
     //echo("<tr>");
 
     for($j = 0; $j < $dim+1;$j++){
+
+        $cellLetter = chr($j+65-1);
+        $cellNumber = $i;
+        $cellId = $cellLetter.$cellNumber;
 
         //Left uppermost empty
         if($i == 0 && $j == 0){
@@ -206,7 +212,7 @@ for($i = 0; $i < $dim+1; $i++){
             continue;
         }
 
-        $table.='<td class = "Cell">';
+        $table.='<td onclick="addCell(this.id)", class = "Cell" id="'.$cellId.'">';
 
         //content here
 
@@ -229,8 +235,15 @@ echo("<br><button id = 'print' onclick = 'printScreen(\"$formatted_print\")'>Pri
 
 
 <script>
+    function addCell(cellid)
+    {
+        current_color = document.getElementById("selectedcolor").innerHTML;
+        document.getElementById("cell"+current_color).innerHTML =document.getElementById("cell"+current_color).innerHTML +" "+cellid+" " ;
+    }
+    
     function printScreen(contents){
         document.getElementById('Container').innerHTML = contents;
+        document.getElementById("colorprint"+0).innerHTML=usedColors[0];
     }
 
     function printInner() {
