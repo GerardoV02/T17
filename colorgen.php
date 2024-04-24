@@ -29,7 +29,7 @@ require("./navbar/navbar.php");
         echo "<br><input type=\"range\" id=\"dimension_num\" name=\"dimension_num\" min=\"1\" max=\"26\" value=\"$dimension_num\" oninput=\"out_d.value=this.value\">";
     ?>
 
-    <div class="ColorsForm">
+    <div class="color Form">
     <label for="color_num">Number of Colors = </label>   
     <?php
         $color_num = 1;
@@ -42,22 +42,14 @@ require("./navbar/navbar.php");
     <br>
     <button type="submit">Update</button>
 </form>
-<br>
-<br>
-<br>
-<hr>
-<br>
-<br>
+
+
 <form id= "colorSelectForm" method="post" action="colorgen.php?dimension_num=<?php echo($dimension_num);?>&color_num=<?php echo($color_num);?>">
-
-
+<table style="border: 3px solid black; border-collapse: collapse;">
 <?php
-
-    $color_num = isset($_GET["color_num"])?$_GET["color_num"]:1;
     $colorsPossible = ["red", "orange", "yellow", "green", "blue", "purple", "grey", "brown", "black", "teal"];
     $colorsSelected = isset($_POST["colors"])?$_POST["colors"]:$colorsPossible;
     //echo("[".implode(",",$colorsSelected)."]"."<br>");
-    echo("<table style=\"border: 3px solid black; border-collapse: collapse;\">");
     for ($i = 0; $i < 10; $i++) {
         echo("<tr>");
         $hidden = $i>$color_num-1;
@@ -87,8 +79,8 @@ require("./navbar/navbar.php");
         }
         echo("</tr>");
     }
-    echo("</table>"); 
 ?>
+</table>
 <br>
 </form>
 <p id="selectedcolor">none</p>
@@ -111,7 +103,7 @@ require("./navbar/navbar.php");
         for (index = 0; index<10; index++)
         {
             document.getElementById("color"+index).value=usedColors[index];
-            document.getElementById("colorprint"+index).innerHTML=usedColors[index];
+            //ddocument.getElementById("colorprint"+index).innerHTML=usedColors[index];
         }
     }
     function colorAlreadyUsed(color)
@@ -212,7 +204,7 @@ for($i = 0; $i < $dim+1; $i++){
             continue;
         }
 
-        $table.='<td onclick="addCell(this.id)", class = "Cell" id="'.$cellId.'">';
+        $table.='<td onclick="addCell(this.id)", class = "Cell" id="'.$cellId.'" color="none">';
 
         //content here
 
@@ -237,8 +229,28 @@ echo("<br><button id = 'print' onclick = 'printScreen(\"$formatted_print\")'>Pri
 <script>
     function addCell(cellid)
     {
-        current_color = document.getElementById("selectedcolor").innerHTML;
-        document.getElementById("cell"+current_color).innerHTML =document.getElementById("cell"+current_color).innerHTML +" "+cellid+" " ;
+        color = document.getElementById("selectedcolor").innerHTML;
+        cellElement = document.getElementById(cellid);
+        previousColor = cellElement.getAttribute("color");
+        cellElement.setAttribute("color",color);
+        cellElement.style.backgroundColor=color;
+        updateCellContainer(color);
+        updateCellContainer(previousColor);
+    }
+
+    function updateCellContainer(color)
+    {
+        if (color=="none")
+            return;
+        var colorElements = document.querySelectorAll(`[color="${color}"]`);
+        var container =  document.getElementById("cell"+color);
+        var ids ="";
+
+            // Correct loop using for...of for iterating over NodeList
+            for (let element of colorElements) {
+                 ids += element.id + " "; // Collect all IDs
+            }
+        container.innerHTML = ids;
     }
     
     function printScreen(contents){
@@ -255,6 +267,11 @@ echo("<br><button id = 'print' onclick = 'printScreen(\"$formatted_print\")'>Pri
             newWin.print();
             newWin.close();
         }, 100);
+    }
+
+    //quick methods
+    {
+
     }
 </script>
 </div>
