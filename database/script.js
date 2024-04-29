@@ -4,7 +4,7 @@ $(document).ready(function (){
 
 function load(){
     //Setting GET variable, show, to "show"
-    $.get("database/database.php",{"show":"show"}, (data) => {
+    $.get("database/select.php",{"table":"colors"}, (data) => {
         $("#content").html(convert(jQuery.parseJSON(data)));
     })
 }
@@ -22,7 +22,7 @@ function loadAdd(){
         alert("Hex was not entered!");
     }
 
-    $.get("database/database.php",{"newName":newName, "newHex": newHex }, (data) =>{
+    $.get("database/add.php",{"newName":newName, "newHex": newHex }, (data) =>{
         $("#addResult").html(jQuery.parseJSON(data));
     })
 }
