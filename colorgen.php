@@ -61,7 +61,7 @@ require("./navbar/navbar.php");
         {
             //generate the radio forms beside the colors 
            echo("<td>
-            <input type=\"radio\" id=\"selected_color\" name=\"selected_color\" onchange='displaySelectedColor(this.value)' value=\"$colorsSelected[$i]\">
+            <input type=\"radio\" id=\"selected_color\" name=\"selected_color\" onchange='displaySelectedColor()' value=\"$i\">
             <label for=\"option1\"></label>
             </td>" );
 
@@ -75,7 +75,7 @@ require("./navbar/navbar.php");
             }
             echo "</select>";
             echo("</td>");
-            echo("<td style=\"border: 3px solid black; border-collapse: collapse;\"id='cell$colorsSelected[$i]'> CELLS: ");
+            echo("<td style=\"border: 3px solid black; border-collapse: collapse;\"id='cellcontainer$i'> CELLS: ");
         }
         echo("</tr>");
     }
@@ -83,7 +83,8 @@ require("./navbar/navbar.php");
 </table>
 <br>
 </form>
-<p id="selectedcolor">none</p>
+<p id="selectedcolorvalue">none</p>
+<p id="selectedcolornumber">none</p>
 <script>
     let color_num = <?php echo(isset($_GET["color_num"])?$_GET["color_num"]:1);?>;
     let usedColors = getUsedColors();
@@ -97,6 +98,8 @@ require("./navbar/navbar.php");
         }
         usedColors[index]=color;
         updateValues();
+        displaySelectedColor();
+        updateAllCellContainer();
     }
     function updateValues()
     {
@@ -122,9 +125,11 @@ require("./navbar/navbar.php");
         echo("[\"".implode("\",\"",$colorsSelected)."\"]");
         ?> ;
     }
-    function displaySelectedColor(color)
-    {
-        document.getElementById("selectedcolor").innerHTML=(color);
+    function displaySelectedColor(colorNumber)
+    {     
+        colorNumber = document.querySelector('input[name="selected_color"]:checked').value
+        document.getElementById("selectedcolornumber").innerHTML=(colorNumber);
+        document.getElementById("selectedcolorvalue").innerHTML=(usedColors[colorNumber]);
     }
 </script>
 
@@ -229,28 +234,40 @@ echo("<br><button id = 'print' onclick = 'printScreen(\"$formatted_print\")'>Pri
 <script>
     function addCell(cellid)
     {
-        color = document.getElementById("selectedcolor").innerHTML;
+        colorNumber = document.getElementById("selectedcolornumber").innerHTML;
+        colorValue = document.getElementById("selectedcolorvalue").innerHTML;
         cellElement = document.getElementById(cellid);
+
         previousColor = cellElement.getAttribute("color");
-        cellElement.setAttribute("color",color);
-        cellElement.style.backgroundColor=color;
-        updateCellContainer(color);
+        cellElement.setAttribute("color",colorNumber);
+        cellElement.style.backgroundColor=colorValue;
+
+        updateCellContainer(colorNumber);
         updateCellContainer(previousColor);
     }
 
-    function updateCellContainer(color)
+    function updateCellContainer(colorNumber)
     {
-        if (color=="none")
+        if (colorNumber=="none")
             return;
-        var colorElements = document.querySelectorAll(`[color="${color}"]`);
-        var container =  document.getElementById("cell"+color);
+        var cellElements = document.querySelectorAll(`[color="${colorNumber}"]`);
+        var container =  document.getElementById("cellcontainer"+colorNumber);
         var ids ="";
 
             // Correct loop using for...of for iterating over NodeList
-            for (let element of colorElements) {
+            for (let element of cellElements) {
+                 element.style.backgroundColor = usedColors[colorNumber];
                  ids += element.id + " "; // Collect all IDs
             }
         container.innerHTML = ids;
+    }
+
+    function updateAllCellContainer()
+    {
+        for (i = 0; i< color_num; i++)
+        {
+            updateCellContainer(i);
+        }
     }
     
     function printScreen(contents){
