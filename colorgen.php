@@ -145,7 +145,7 @@ require("./navbar/navbar.php");
 $formatted_print = '<h1 id = "PrintMenu">Print Menu</h1>';
 
 //This creates a Exit Button from the print Menu
-$formatted_print.='<form method="POST" action="colorgen.php"><button type="submit" name="page" value="color generator" id="Exit">Return to Color Generator</button></form>';
+$formatted_print.='<button onclick="printReturn()" id="Exit">Return to Color Generator</button>';
 $formatted_print.='<br><button onclick="printInner()">Print</button>';
 
 //Throwing the table info into a div for easy printing
@@ -232,6 +232,8 @@ echo("<br><button id = 'print' onclick = 'printScreen(\"$formatted_print\")'>Pri
 
 
 <script>
+    let oldContainer = null;
+
     function addCell(cellid)
     {
         colorNumber = document.getElementById("selectedcolornumber").innerHTML;
@@ -271,8 +273,14 @@ echo("<br><button id = 'print' onclick = 'printScreen(\"$formatted_print\")'>Pri
     }
     
     function printScreen(contents){
+        oldContainer = document.getElementById('Container').innerHTML;
         document.getElementById('Container').innerHTML = contents;
         document.getElementById("colorprint"+0).innerHTML=usedColors[0];
+    }
+
+    function printReturn() {
+        document.getElementById('Container').innerHTML = oldContainer;
+        oldContainer = null;
     }
 
     function printInner() {
