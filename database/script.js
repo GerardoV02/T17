@@ -1,5 +1,6 @@
 $(document).ready(function (){
-    $("#test").click(load);
+    $("#select").click(load);
+    $("add").click(loadAdd());
 });
 
 function load(){
