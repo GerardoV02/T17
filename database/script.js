@@ -1,8 +1,3 @@
-$(document).ready(function (){
-    $("#addColor").click(loadAdd);
-    $("#selectColor").onclick(load);
-});
-
 function load(){
     //Setting GET variable, show, to "show"
     $.get("database/select.php",{"table":"colors"}, (data) => {

@@ -18,7 +18,7 @@
 <div id = "Container">
 <h1 class = "PageTitle">Database Page</h1>
 <body>
-    <button id="select">Show Table</button>
+    <button id="select" onclick = "load()">Show Table</button>
 
     <!-- this div will be used to load content from database -->
     <div id = "content"></div>
@@ -27,7 +27,7 @@
     <input type = "text" placeholder="Enter a new color name" id = "newColorName">
     <input type = "text" placeholder="Enter a new color hex" id = "newColorHex">
     <button id = "addColor">Add Color</button> 
-    <div id = "addResult"></div>
+    <div id = "addResult" onclick = "loadAdd()"></div>
 
     <h2>Update A Color</h2>
     <input type = "text" placeholder="Enter old color name" id = "oldColorName">
