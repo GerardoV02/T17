@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="database/script.js"></script>
@@ -27,8 +26,20 @@
     <h2>Add A Color</h2>
     <input type = "text" placeholder="Enter a new color name" id = "newColorName">
     <input type = "text" placeholder="Enter a new color hex" id = "newColorHex">
-    <button id = "add" onclick="loadAdd()">Add Color</button> 
+    <button id = "addColor">Add Color</button> 
     <div id = "addResult"></div>
+
+    <h2>Update A Color</h2>
+    <input type = "text" placeholder="Enter old color name" id = "oldColorName">
+    <input type = "text" placeholder="Enter new color name" id = "updateColor">
+    <input type = "text" placeholder="Optional: new color hex" id = "updateHex">
+    <button id = "updateColor">Update Color</button>
+    <div id = "updateResult"></div>
+
+    <h2>Delete A Color</h2>
+    <input type = "text" placeholder="Enter color to delete" id = "deleteName">
+    <button id = "deleteColor">Delete Color</button>
+    <div id = "deleteResult"></div>
 </body>
 
 

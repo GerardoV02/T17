@@ -1,6 +1,6 @@
 $(document).ready(function (){
-    $("#select").click(load);
-    $("add").click(loadAdd());
+    $("#addColor").click(loadAdd);
+    $("#selectColor").onclick(load);
 });
 
 function load(){
@@ -17,10 +17,12 @@ function loadAdd(){
     //If newName or newHex is empty
     if(newName === ""){
         alert("Name was not entered!");
+        return;
     }
 
     if(newHex === ""){
         alert("Hex was not entered!");
+        return;
     }
 
     $.get("database/add.php",{"newName":newName, "newHex": newHex }, (data) =>{
