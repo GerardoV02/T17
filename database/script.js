@@ -3,6 +3,8 @@ function load(){
     $.get("database/select.php",{"table":"colors"}, (data) => {
         $("#content").html(convert(jQuery.parseJSON(data)));
     })
+
+    
 }
 
 function loadAdd(){
@@ -25,7 +27,42 @@ function loadAdd(){
     })
 }
 
+function loadUpdate(){
+    let oldName = document.getElementById('oldColorName').value.trim();
+    let newName = document.getElementById('updateName').value.trim();
+    let newHex = document.getElementById('updateHex').value.trim();
+
+    if(oldName === ""){
+        alert("Old name was not entered!");
+        return;
+    }
+
+    if(newName === ""){
+        alert("New name was not entered!");
+        return;
+    }
+
+    $.get("database/update.php",{"oldName":oldName,"newName":newName, "newHex": newHex }, (data) =>{
+        $("#updateResult").html(jQuery.parseJSON(data));
+    })
+}
+
+function loadDelete(){
+    let colorToDelete = document.getElementById('deleteName').value.trim();
+
+    if(colorToDelete ===""){
+        alert("Color name was not entered!");
+        return;
+    }
+
+    $.get("database/delete.php",{"deleteColor":colorToDelete}, (data) =>{
+        $("#deleteResult").html(jQuery.parseJSON(data));
+    })
+}
+
 function convert(json_data) {
+
+
     // Get the container element where the table will be inserted
     // Create the table element
     let table = $("<table id = 'db'>");
