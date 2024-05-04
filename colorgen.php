@@ -75,7 +75,7 @@ require("./navbar/navbar.php");
             }
             echo "</select>";
             echo("</td>");
-            echo("<td style=\"border: 3px solid black; border-collapse: collapse;\"id='cellcontainer$i'> CELLS: ");
+            echo("<td style=\"border: 3px solid black; border-collapse: collapse;\"id='cellcontainer$i'>");
         }
         echo("</tr>");
     }
@@ -172,7 +172,7 @@ $colorInfo .= '</ul>';
 $formatted_print.=$colorInfo;
 
 //Creating the n+1 x n+1 table
-$table = '<table class = "BottomTable">';
+$table = '<table class = "BottomTable" id="bottomTable">';
 
 $dim = isset($_GET["dimension_num"])?$_GET["dimension_num"]:1;
 
@@ -227,7 +227,7 @@ $formatted_print.=$table;
 $formatted_print.='</div>';
 $formatted_print = addslashes($formatted_print);
 
-echo("<br><button id = 'print' onclick = 'printScreen(\"$formatted_print\")'>Print Preview</button>");
+echo("<br><button id = 'print' onclick = 'printScreen()'>Print Preview</button>");
 ?>
 
 
@@ -272,10 +272,17 @@ echo("<br><button id = 'print' onclick = 'printScreen(\"$formatted_print\")'>Pri
         }
     }
     
-    function printScreen(contents){
+    function printScreen(){
+
+        contents ='<button onclick="printReturn()" id="Exit">Return to Color Generator</button>' + document.getElementById('bottomTable').outerHTML;
+        for (i = 0; i<color_num; i++)
+        {
+            contents+='<h1>'+usedColors[i]+'</h1>';
+            contents+='<h2>'+document.getElementById("cellcontainer"+i).innerHTML+'</h2>';
+        }
         oldContainer = document.getElementById('Container').innerHTML;
         document.getElementById('Container').innerHTML = contents;
-        document.getElementById("colorprint"+0).innerHTML=usedColors[0];
+   
     }
 
     function printReturn() {
