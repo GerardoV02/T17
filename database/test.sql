@@ -1,6 +1,7 @@
 -- mysql -u loginname -D loginname -h faure -p
 -- loginname is username for CS machine login
 
+
 CREATE TABLE colors(
     id              int             NOT NULL    AUTO_INCREMENT,
     colorName       varchar(255)    NOT NULL,
