@@ -209,7 +209,7 @@ for($i = 0; $i < $dim+1; $i++){
             continue;
         }
 
-        $table.='<td onclick="addCell(this.id)", class = "Cell" id="'.$cellId.'" color="none">';
+        $table.='<td onclick="addCell(this.id)", class = "Cell" id="'.$cellId.'" color="">';
 
         //content here
 
@@ -241,16 +241,24 @@ echo("<br><button id = 'print' onclick = 'printScreen()'>Print Preview</button>"
         cellElement = document.getElementById(cellid);
 
         previousColor = cellElement.getAttribute("color");
-        cellElement.setAttribute("color",colorNumber);
-        cellElement.style.backgroundColor=colorValue;
 
+        if (colorNumber!=previousColor)
+        {
+            cellElement.setAttribute("color",colorNumber);
+            cellElement.style.backgroundColor=colorValue;
+        }
+        else 
+        {
+            cellElement.setAttribute("color","");
+            cellElement.style.backgroundColor="white";
+        }
         updateCellContainer(colorNumber);
         updateCellContainer(previousColor);
     }
 
     function updateCellContainer(colorNumber)
     {
-        if (colorNumber=="none")
+        if (colorNumber=="")
             return;
         var cellElements = document.querySelectorAll(`[color="${colorNumber}"]`);
         var container =  document.getElementById("cellcontainer"+colorNumber);
@@ -274,15 +282,35 @@ echo("<br><button id = 'print' onclick = 'printScreen()'>Print Preview</button>"
     
     function printScreen(){
 
-        contents ='<button onclick="printReturn()" id="Exit">Return to Color Generator</button>' + document.getElementById('bottomTable').outerHTML;
+        contents ='<button onclick="printReturn()" id="Exit">Return to Color Generator</button>' 
         for (i = 0; i<color_num; i++)
         {
-            contents+='<h1>'+usedColors[i]+'</h1>';
+            contents+='<h1> color '+i+": "+usedColors[i]+getHexValue(usedColors[i])+'</h1>';
             contents+='<h2>'+document.getElementById("cellcontainer"+i).innerHTML+'</h2>';
         }
+        contents += document.getElementById('bottomTable').outerHTML;
         oldContainer = document.getElementById('Container').innerHTML;
         document.getElementById('Container').innerHTML = contents;
-   
+        for (let cell of document.getElementsByClassName("Cell"))
+        {
+            cell.innerHTML=cell.getAttribute("color");
+            cell.style.backgroundColor='white';
+        }
+    }
+
+    function getHexValue(colorName) {
+        //create a canvas
+        const canvas = document.createElement('canvas');
+        canvas.width = 1; 
+        canvas.height = 1;
+        //fill in canvas with color
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = colorName;
+        ctx.fillRect(0, 0, 1, 1);
+        //get RGB color values
+        [r, g, b, a] = ctx.getImageData(0, 0, 1, 1).data;
+        //Convert RGB color Values to HEX
+        return ` #${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
     }
 
     function printReturn() {
