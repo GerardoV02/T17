@@ -52,6 +52,7 @@ body {
 }
 
 #Container .Cell{
+    text-align: center;
     font-family: 'Trebuchet MS',sans-serif;
     width: 20px;
     height: 20px;
