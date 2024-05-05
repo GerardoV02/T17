@@ -288,13 +288,13 @@ echo("<br><button id = 'print' onclick = 'printScreen()'>Print Preview</button>"
                 contents+='<h2>'+usedColors[i]+' {'+getHexValue(usedColors[i])+'}: '+document.getElementById("cellcontainer"+i).innerHTML+'</h2>';
             }
         }
-        contents += document.getElementById('bottomTable').outerHTML;
         oldContainer = document.getElementById('Container').innerHTML;
         document.getElementById('Container').innerHTML = contents;
         for (let cell of document.getElementsByClassName("Cell"))
         {
-            cell.innerHTML=cell.getAttribute("color");
-            cell.style.backgroundColor='white';
+            if (!cell.innerHTML) {
+                cell.innerHTML=cell.getAttribute("color");
+            }
         }
     }
 
