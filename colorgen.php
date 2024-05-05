@@ -274,11 +274,12 @@ echo("<br><button id = 'print' onclick = 'printScreen()'>Print Preview</button>"
     
     function printScreen(){
 
-        contents ='<button onclick="printReturn()" id="Exit">Return to Color Generator</button>' + document.getElementById('bottomTable').outerHTML;
+        contents ='<button onclick="printReturn()" id="Exit">Return to Color Generator</button><br><br><br><button onclick="printInner()" id="Print">Print</button><br><br>' + document.getElementById('bottomTable').outerHTML + '<br><p>Color Key on Next Page</p><br>';
         for (i = 0; i<color_num; i++)
         {
-            contents+='<h1>'+usedColors[i]+'</h1>';
-            contents+='<h2>'+document.getElementById("cellcontainer"+i).innerHTML+'</h2>';
+            if (document.getElementById("cellcontainer"+i).innerHTML) {
+                contents+='<h2>'+usedColors[i]+': '+document.getElementById("cellcontainer"+i).innerHTML+'</h2>';
+            }
         }
         oldContainer = document.getElementById('Container').innerHTML;
         document.getElementById('Container').innerHTML = contents;
@@ -291,10 +292,15 @@ echo("<br><button id = 'print' onclick = 'printScreen()'>Print Preview</button>"
     }
 
     function printInner() {
-        var content = document.getElementById("printPage").innerHTML;
+        var content = '<img src="./Images/logo_transparent.png" class="TeamLogo">'+document.getElementById("Container").innerHTML;
         var newWin = window.open("");
         newWin.document.write("<link href=\"./print_style.css\" rel=\"stylesheet\">");
         newWin.document.write(content);
+        newWin.document.getElementById("Exit").remove();
+        newWin.document.getElementById("Print").remove();
+        for (const br of newWin.document.getElementsByTagName("br")) {
+            br.remove();
+        }
         setTimeout(() => {
             newWin.print();
             newWin.close();
