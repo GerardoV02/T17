@@ -285,7 +285,7 @@ echo("<br><button id = 'print' onclick = 'printScreen()'>Print Preview</button>"
         contents ='<button onclick="printReturn()" id="Exit">Return to Color Generator</button>' 
         for (i = 0; i<color_num; i++)
         {
-            contents+='<h1> color '+i+": "+usedColors[i]+'</h1>';
+            contents+='<h1> color '+i+": "+usedColors[i]+getHexValue(usedColors[i])+'</h1>';
             contents+='<h2>'+document.getElementById("cellcontainer"+i).innerHTML+'</h2>';
         }
         contents += document.getElementById('bottomTable').outerHTML;
@@ -296,6 +296,21 @@ echo("<br><button id = 'print' onclick = 'printScreen()'>Print Preview</button>"
             cell.innerHTML=cell.getAttribute("color");
             cell.style.backgroundColor='white';
         }
+    }
+
+    function getHexValue(colorName) {
+        //create a canvas
+        const canvas = document.createElement('canvas');
+        canvas.width = 1; 
+        canvas.height = 1;
+        //fill in canvas with color
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = colorName;
+        ctx.fillRect(0, 0, 1, 1);
+        //get RGB color values
+        [r, g, b, a] = ctx.getImageData(0, 0, 1, 1).data;
+        //Convert RGB color Values to HEX
+        return ` #${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
     }
 
     function printReturn() {
